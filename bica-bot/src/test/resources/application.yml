@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: teleport
+
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: WARN
+      hibernate: WARN
+
+core:
+  initial-valence: 1.0
+  initial-dominance: 1.0
+
+---
+
+spring:
+  profiles: teleport
+
+count-player: 2
+actions:
+  - name: "Kick"
+    valence: 1.0
+    dominance: 1.0
+
+  - name: "Save"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Greet"
+    valence: 2.0
+    dominance: 2.0
