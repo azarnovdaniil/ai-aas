@@ -1,4 +1,4 @@
-package ru.daniilazarnov.bot.paradigm.teleport.config;
+package ru.daniilazarnov.bot.paradigm.teleport.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Configuration
 @ConfigurationProperties()
-public class TeleportConfig {
+public class TeleportProperties {
 
     private int countPlayer;
     private List<Action> actions = new ArrayList<>();

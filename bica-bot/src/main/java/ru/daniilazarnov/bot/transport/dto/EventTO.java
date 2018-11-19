@@ -1,23 +1,58 @@
 package ru.daniilazarnov.bot.transport.dto;
 
-import javax.vecmath.Point3d;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventTO {
 
+    private String timeStamp;
+    private String sessionId;
+    private String participantId;
     private String actionName;
     private String actorName;
     private String targetName;
-    private Point3d point3d;
+
+    private Map<String, String> otherAttributes = new HashMap<>();
 
     public EventTO() {
         // need for Jackson
     }
 
-    public EventTO(String actionName, String actorName, String targetName, Point3d point3d) {
+    public EventTO(String timeStamp, String sessionId, String participantId, String actionName, String actorName, String targetName) {
+        this.timeStamp = timeStamp;
+        this.sessionId = sessionId;
+        this.participantId = participantId;
         this.actionName = actionName;
         this.actorName = actorName;
         this.targetName = targetName;
-        this.point3d = point3d;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(String participantId) {
+        this.participantId = participantId;
+    }
+
+    public Map<String, String> getOtherAttributes() {
+        return otherAttributes;
     }
 
     public void setActionName(String actionName) {
@@ -42,14 +77,6 @@ public class EventTO {
 
     public String getTargetName() {
         return targetName;
-    }
-
-    public Point3d getPoint3d() {
-        return point3d;
-    }
-
-    public void setPoint3d(Point3d point3d) {
-        this.point3d = point3d;
     }
 
 }

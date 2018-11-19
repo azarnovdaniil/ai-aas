@@ -3,7 +3,7 @@ package ru.daniilazarnov.bot.transport.dao;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.stereotype.Repository;
-import ru.daniilazarnov.bot.SimpleBot;
+import ru.daniilazarnov.bot.Bot;
 import ru.daniilazarnov.bot.transport.domain.Event;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class CsvEventDao implements EventDao {
 
     public List<Event> getListEvent() {
 
-        try (Reader reader = new InputStreamReader(SimpleBot.class.getClassLoader().getResourceAsStream("test_log.csv"))) {
+        try (Reader reader = new InputStreamReader(Bot.class.getClassLoader().getResourceAsStream("test_log.csv"))) {
 
             CsvToBean<Event> csvToBean = new CsvToBeanBuilder<Event>(reader)
                     .withType(Event.class)

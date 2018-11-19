@@ -1,11 +1,11 @@
-package ru.daniilazarnov.bot.core.config;
+package ru.daniilazarnov.bot.core.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties("core")
-public class BotConfig {
+public class BotProperties {
 
     private double initialDominance;
     private double initialValence;

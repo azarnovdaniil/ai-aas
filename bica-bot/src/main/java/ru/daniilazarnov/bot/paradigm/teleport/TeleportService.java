@@ -3,7 +3,7 @@ package ru.daniilazarnov.bot.paradigm.teleport;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.BotCore;
-import ru.daniilazarnov.bot.paradigm.teleport.config.TeleportConfig;
+import ru.daniilazarnov.bot.paradigm.teleport.property.TeleportProperties;
 import ru.daniilazarnov.bot.paradigm.teleport.converter.ActionConverter;
 import ru.daniilazarnov.bot.transport.dto.EventTO;
 import ru.daniilazarnov.bot.core.domain.Action;
@@ -16,33 +16,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ru.daniilazarnov.bot.paradigm.profile.ProfileParadigm.TELEPORT;
+import static ru.daniilazarnov.bot.paradigm.ProfileParadigm.TELEPORT;
 
 @Service
 @Profile(TELEPORT)
 public class TeleportService implements BotService {
 
     private final BotCore botCore;
-    private final TeleportConfig teleportConfig;
+    private final TeleportProperties teleportProperties;
     private final Map<String, Action> actions = new HashMap<>();
     private final Map<String, Actor> actors = new HashMap<>();
     private final Actor mainActor = new Actor("Bot");
     private final List<Operation> operations = new ArrayList<>();
 
-    public TeleportService(BotCore botCore, TeleportConfig teleportConfig) {
+    public TeleportService(BotCore botCore, TeleportProperties teleportProperties) {
         this.botCore = botCore;
-        this.teleportConfig = teleportConfig;
+        this.teleportProperties = teleportProperties;
         init();
     }
 
     private void init() {
-        for (int i = 0; i < teleportConfig.getCountPlayer(); i++) {
+        for (int i = 0; i < teleportProperties.getCountPlayer(); i++) {
             actors.put("Actor" + i, new Actor("Actor" + i));
         }
 
         botCore.initMemory(actors.values());
 
-        teleportConfig.getActions().forEach(action -> actions.put(action.getName(), ActionConverter.action_action.apply(action)));
+        teleportProperties.getActions().forEach(action -> actions.put(action.getName(), ActionConverter.action_action.apply(action)));
 
         actions.values().forEach(action -> actors.values().forEach(actor -> operations.add(new Operation(action, mainActor, actor))));
     }

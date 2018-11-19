@@ -1,0 +1,100 @@
+spring:
+  profiles:
+    active: calculator
+
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: WARN
+      hibernate: WARN
+
+---
+
+spring:
+  profiles: calculator
+
+before-calc-location: "before-dir"
+after-calc-location: "after-dir"
+
+initial-valence: 1.0
+initial-dominance: 1.0
+
+system-actions:
+  - "Spawned"
+  - "BeginRound"
+  - "EndRound"
+
+actions:
+  - name: "Kick"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Ask"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Saved"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Thank"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Greet"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Activated"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Deactivated"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "ExitTP"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "TakeOff"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Spawned"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Moved"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "EnterTP"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Escaped"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Escape"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "ConfirmedHuman"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Shoot"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Heal"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "ConfirmedBot"
+    valence: 2.0
+    dominance: 2.0

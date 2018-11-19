@@ -39,6 +39,11 @@ public class BotController {
         return botService.eventHandle(eventTO);
     }
 
+    @PostMapping("/client")
+    public EventTO clientController(@RequestBody EventTO eventTO) {
+        return botService.eventHandle(eventTO);
+    }
+
     @RequestMapping("/emulation")
     public List<EventTO> teleportController() {
         return eventDao.getListEvent().stream()

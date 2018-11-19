@@ -1,7 +1,7 @@
 package ru.daniilazarnov.bot.core.memory;
 
 import org.springframework.stereotype.Repository;
-import ru.daniilazarnov.bot.core.config.BotConfig;
+import ru.daniilazarnov.bot.core.property.BotProperties;
 import ru.daniilazarnov.bot.core.domain.Action;
 import ru.daniilazarnov.bot.core.domain.Actor;
 import ru.daniilazarnov.bot.core.domain.Appraisal;
@@ -16,15 +16,15 @@ public class BotMemory {
 
     private final Map<String, Appraisal> memoryAboutActor = new HashMap<>();
 
-    private final BotConfig botConfig;
+    private final BotProperties botProperties;
 
-    public BotMemory(BotConfig botConfig) {
-        this.botConfig = botConfig;
+    public BotMemory(BotProperties botProperties) {
+        this.botProperties = botProperties;
     }
 
     public void initMemory(Actor actor) {
-        memoryAboutActor.put(Util.targetKey(actor), Appraisal.valueOf(botConfig.getInitialValence(), botConfig.getInitialDominance()));
-        memoryAboutActor.put(Util.actorKey(actor), Appraisal.valueOf(botConfig.getInitialValence(), botConfig.getInitialDominance()));
+        memoryAboutActor.put(Util.targetKey(actor), Appraisal.valueOf(botProperties.getInitialValence(), botProperties.getInitialDominance()));
+        memoryAboutActor.put(Util.actorKey(actor), Appraisal.valueOf(botProperties.getInitialValence(), botProperties.getInitialDominance()));
     }
 
     public void updateMemory(Action action, Actor actor) {

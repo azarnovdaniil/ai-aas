@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: teleport
+    active: client
 
 logging:
   level:
@@ -66,3 +66,7 @@ actions:
 spring:
   profiles: telegram
 
+---
+
+spring:
+  profiles: client

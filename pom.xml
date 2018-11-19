@@ -20,6 +20,7 @@
     <modules>
         <module>bica-bot</module>
         <module>bica-client</module>
+        <module>bica-calc</module>
     </modules>
 
     <properties>

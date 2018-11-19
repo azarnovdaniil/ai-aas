@@ -25,7 +25,7 @@ public final class AppraisalFunctions {
         return Appraisal.valueOf(result);
     };
 
-    static final TriFunction<Appraisal, Appraisal, Appraisal, Double> likelyHoodFunc = (action, actor, target) -> {
+    public static final TriFunction<Appraisal, Appraisal, Appraisal, Double> likelyHoodFunc = (action, actor, target) -> {
         double result = actor.getValue().conjugate().add(target.getValue()).multiply(action.getValue()).getReal();
 
         return result > 0.0 ? result : 0.0;
