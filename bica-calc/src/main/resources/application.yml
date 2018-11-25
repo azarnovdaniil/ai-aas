@@ -59,6 +59,10 @@ actions:
     valence: 2.0
     dominance: 2.0
 
+  - name: "exitTP"
+    valence: 2.0
+    dominance: 2.0
+
   - name: "TakeOff"
     valence: 2.0
     dominance: 2.0
@@ -68,6 +72,10 @@ actions:
     dominance: 2.0
 
   - name: "Moved"
+    valence: 2.0
+    dominance: 2.0
+
+  - name: "Move"
     valence: 2.0
     dominance: 2.0
 

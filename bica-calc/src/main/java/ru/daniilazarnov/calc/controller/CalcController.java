@@ -3,12 +3,10 @@ package ru.daniilazarnov.calc.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.calc.dao.LogDao;
-import ru.daniilazarnov.calc.domain.Event;
 import ru.daniilazarnov.calc.service.CalcService;
 import ru.daniilazarnov.calc.service.StorageService;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import static java.lang.System.out;
 
 @RestController
 public class CalcController {
@@ -25,11 +23,9 @@ public class CalcController {
 
     @RequestMapping("/calculate")
     public void teleportController() {
-        List<String> collect = logDao.getListEvent().stream()
+        logDao.getListEvent().stream()
                 .map(calcService::calculateAppraisal)
-                .map(Event::toCSV)
-                .collect(Collectors.toList());
+                .forEach(event -> out.println(event.toCSV()));
 
-        storageService.createCSV(collect);
     }
 }

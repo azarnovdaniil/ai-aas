@@ -24,7 +24,7 @@ public class UnityLogDao implements LogDao {
     @Override
     public List<UnityLogRow> getListEvent() {
 
-        try (Reader reader = new InputStreamReader(Calc.class.getClassLoader().getResourceAsStream("log.csv"))) {
+        try (Reader reader = new InputStreamReader(Calc.class.getClassLoader().getResourceAsStream("social.csv"))) {
 
             CsvToBean<UnityLogRow> csvToBean = new CsvToBeanBuilder<UnityLogRow>(reader)
                     .withType(UnityLogRow.class)

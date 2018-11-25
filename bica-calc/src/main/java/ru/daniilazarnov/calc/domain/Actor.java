@@ -1,5 +1,7 @@
 package ru.daniilazarnov.calc.domain;
 
+import java.util.Objects;
+
 public class Actor {
 
     private final String name;
@@ -19,7 +21,7 @@ public class Actor {
 
         Actor actor = (Actor) o;
 
-        return name != null ? name.equals(actor.name) : actor.name == null;
+        return Objects.equals(name, actor.name);
     }
 
     @Override
