@@ -3,7 +3,7 @@ package ru.daniilazarnov.calc.serialization.json;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import ru.daniilazarnov.calc.domain.Event;
+import ru.daniilazarnov.calc.model.Event;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;

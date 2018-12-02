@@ -1,9 +1,9 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.domain.Actor;
-import ru.daniilazarnov.calc.domain.Event;
-import ru.daniilazarnov.calc.domain.UnityLogRow;
+import ru.daniilazarnov.calc.model.Actor;
+import ru.daniilazarnov.calc.model.Event;
+import ru.daniilazarnov.calc.model.UnityLogRow;
 
 @Component
 public class LogConverter {

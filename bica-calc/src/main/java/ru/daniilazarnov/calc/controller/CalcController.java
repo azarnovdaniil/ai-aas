@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.calc.dao.LogDao;
 import ru.daniilazarnov.calc.domain.*;
+import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.serialization.csv.CsvEventSerializer;
 import ru.daniilazarnov.calc.serialization.json.*;
 import ru.daniilazarnov.calc.service.CalcService;

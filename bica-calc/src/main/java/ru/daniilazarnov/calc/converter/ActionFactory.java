@@ -1,9 +1,9 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.domain.Action;
-import ru.daniilazarnov.calc.domain.ActionType;
-import ru.daniilazarnov.calc.domain.Appraisal;
+import ru.daniilazarnov.calc.model.Action;
+import ru.daniilazarnov.calc.model.ActionType;
+import ru.daniilazarnov.calc.model.Appraisal;
 import ru.daniilazarnov.calc.property.CalcProperties;
 
 import java.util.HashMap;

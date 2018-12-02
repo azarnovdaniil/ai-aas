@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.botmemory;
 
 import org.apache.commons.math3.complex.Complex;
-import ru.daniilazarnov.calc.domain.Appraisal;
+import ru.daniilazarnov.calc.model.Appraisal;
 
 import java.util.function.BinaryOperator;
 

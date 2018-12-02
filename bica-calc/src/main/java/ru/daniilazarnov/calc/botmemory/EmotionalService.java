@@ -2,6 +2,7 @@ package ru.daniilazarnov.calc.botmemory;
 
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.calc.domain.*;
+import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.property.CalcProperties;
 
 import java.util.*;

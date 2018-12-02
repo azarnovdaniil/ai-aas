@@ -1,4 +1,4 @@
-package ru.daniilazarnov.calc.domain;
+package ru.daniilazarnov.calc.model;
 
 public class UnityLogRow {
 

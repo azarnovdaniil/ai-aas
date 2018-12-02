@@ -3,7 +3,7 @@ package ru.daniilazarnov.calc.serialization;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.junit.jupiter.api.Test;
-import ru.daniilazarnov.calc.domain.*;
+import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.serialization.json.*;
 
 import java.io.IOException;

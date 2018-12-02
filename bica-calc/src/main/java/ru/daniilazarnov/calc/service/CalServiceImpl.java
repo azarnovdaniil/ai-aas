@@ -2,7 +2,7 @@ package ru.daniilazarnov.calc.service;
 
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.calc.botmemory.BotService;
-import ru.daniilazarnov.calc.domain.Event;
+import ru.daniilazarnov.calc.model.Event;
 
 @Service
 public class CalServiceImpl implements CalcService {

@@ -1,4 +1,4 @@
-package ru.daniilazarnov.calc.domain;
+package ru.daniilazarnov.calc.model;
 
 import org.apache.commons.math3.complex.Complex;
 

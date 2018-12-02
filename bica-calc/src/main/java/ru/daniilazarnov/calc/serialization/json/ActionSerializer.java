@@ -3,7 +3,7 @@ package ru.daniilazarnov.calc.serialization.json;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import ru.daniilazarnov.calc.domain.Action;
+import ru.daniilazarnov.calc.model.Action;
 
 import java.io.IOException;
 
