@@ -1,5 +1,8 @@
 package ru.daniilazarnov.bot.core.domain;
 
+import ru.daniilazarnov.common.model.Action;
+import ru.daniilazarnov.common.model.Actor;
+
 public class Operation {
 
     private final Action action;
@@ -22,15 +25,6 @@ public class Operation {
 
     public Actor getTarget() {
         return target;
-    }
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "action=" + action +
-                ", actor=" + actor +
-                ", target=" + target +
-                '}';
     }
 
 }

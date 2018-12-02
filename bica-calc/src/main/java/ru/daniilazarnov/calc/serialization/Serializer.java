@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.serialization;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import ru.daniilazarnov.calc.model.Event;
+import ru.daniilazarnov.common.model.Event;
 
 public interface Serializer {
 

@@ -1,8 +1,9 @@
 package ru.daniilazarnov.bot.paradigm;
 
-import ru.daniilazarnov.bot.transport.dto.EventTO;
+import ru.daniilazarnov.common.model.Event;
 
 public interface BotService {
 
-    EventTO eventHandle(EventTO eventTO);
+    Event eventHandle(Event eventTO);
+
 }

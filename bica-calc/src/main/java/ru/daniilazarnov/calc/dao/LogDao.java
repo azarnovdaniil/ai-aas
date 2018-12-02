@@ -1,6 +1,6 @@
 package ru.daniilazarnov.calc.dao;
 
-import ru.daniilazarnov.calc.model.Event;
+import ru.daniilazarnov.common.model.Event;
 
 import java.nio.file.Path;
 import java.util.List;

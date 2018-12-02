@@ -1,6 +1,6 @@
 package ru.daniilazarnov.calc.service;
 
-import ru.daniilazarnov.calc.model.Event;
+import ru.daniilazarnov.common.model.Event;
 
 public interface CalcService {
 

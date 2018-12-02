@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.calc.converter.EventConverter;
-import ru.daniilazarnov.calc.model.Event;
-import ru.daniilazarnov.calc.model.UnityLogRow;
 import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.UnityLogRow;
 
 import java.io.BufferedReader;
 import java.io.IOException;

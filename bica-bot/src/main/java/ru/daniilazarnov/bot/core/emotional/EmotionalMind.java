@@ -1,17 +1,17 @@
 package ru.daniilazarnov.bot.core.emotional;
 
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.bot.core.domain.Appraisal;
 import ru.daniilazarnov.bot.core.domain.Operation;
-import ru.daniilazarnov.bot.util.Util;
 import ru.daniilazarnov.bot.core.memory.BotMemory;
+import ru.daniilazarnov.bot.util.Util;
+import ru.daniilazarnov.common.model.Appraisal;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static ru.daniilazarnov.bot.core.emotional.AppraisalFunctions.likelyHoodFunc;
+import static ru.daniilazarnov.common.functions.AppraisalFunctions.likelyHoodFunc;
 
 @Service
 public class EmotionalMind {

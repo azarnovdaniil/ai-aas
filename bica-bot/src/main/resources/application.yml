@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: client
+    active: teleport
 
 logging:
   level:
@@ -20,46 +20,97 @@ spring:
   profiles: teleport
 
 count-player: 2
+
 actions:
   - name: "Kick"
-    valence: 2.0
-    dominance: 2.0
+    valence: -0.2
+    dominance: 0.2
+    type: "NORMAL"
 
-  - name: "Save"
-    valence: 2.0
-    dominance: 2.0
+  - name: "Ask"
+    valence: 0.1
+    dominance: -0.1
+    type: "NORMAL"
+
+  - name: "Saved"
+    valence: 1.8
+    dominance: -0.15
+    type: "NORMAL"
+
+  - name: "Thank"
+    valence: 0.1
+    dominance: -0.2
+    type: "NORMAL"
 
   - name: "Greet"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.15
+    type: "NORMAL"
 
-  - name: "Activate"
-    valence: 2.0
-    dominance: 2.0
+  - name: "Activated"
+    valence: 0.5
+    dominance: 0.0
+    type: "ALL"
 
-  - name: "Deactivate"
-    valence: 2.0
-    dominance: 2.0
+  - name: "Deactivated"
+    valence: -1.1
+    dominance: 0.0
+    type: "ALL"
 
   - name: "ExitTP"
-    valence: 2.0
-    dominance: 2.0
+    valence: -0.1
+    dominance: 0.0
+    type: "ALL"
 
   - name: "TakeOff"
-    valence: 2.0
-    dominance: 2.0
+    valence: 2.7
+    dominance: 0.6
+    type: "SELF"
 
-  - name: "Spawned"
-    valence: 2.0
-    dominance: 2.0
+  - name: "Moved"
+    valence: 0.0
+    dominance: 0.0
+    type: "SELF"
 
   - name: "Move"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.0
+    dominance: 0.0
+    type: "SELF"
 
   - name: "EnterTP"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.0
+    type: "SELF"
+
+  - name: "Escaped"
+    valence: -3.0
+    dominance: 1.0
+    type: "SELF"
+
+  - name: "Escape"
+    valence: -3.0
+    dominance: 1.0
+    type: "SELF"
+
+  - name: "ConfirmedHuman"
+    valence: 0.1
+    dominance: 0.0
+    type: "NORMAL"
+
+  - name: "Shoot"
+    valence: -0.6
+    dominance: 0.4
+    type: "NORMAL"
+
+  - name: "Heal"
+    valence: 0.9
+    dominance: -0.2
+    type: "NORMAL"
+
+  - name: "ConfirmedBot"
+    valence: 0.1
+    dominance: 0.15
+    type: "NORMAL"
 
 ---
 

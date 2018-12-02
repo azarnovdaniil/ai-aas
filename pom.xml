@@ -22,6 +22,7 @@
         <module>bica-web</module>
         <module>bica-calc</module>
         <module>bica-cli</module>
+        <module>bica-common</module>
     </modules>
 
     <properties>

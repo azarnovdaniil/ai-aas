@@ -1,7 +1,6 @@
 package ru.daniilazarnov.simplebot.core.emotional;
 
 import org.junit.jupiter.api.Test;
-import ru.daniilazarnov.bot.core.domain.Appraisal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.daniilazarnov.bot.core.emotional.AppraisalFunctions.*;

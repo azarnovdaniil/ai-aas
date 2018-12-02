@@ -2,6 +2,7 @@ package ru.daniilazarnov.calc.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import ru.daniilazarnov.common.property.Action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,45 +83,6 @@ public class CalcProperties {
 
     public void setDateTimeFormatter(String dateTimeFormatter) {
         this.dateTimeFormatter = dateTimeFormatter;
-    }
-
-    public static class Action {
-        private String name;
-        private double valence;
-        private double dominance;
-        private String type;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public double getValence() {
-            return valence;
-        }
-
-        public void setValence(double valence) {
-            this.valence = valence;
-        }
-
-        public double getDominance() {
-            return dominance;
-        }
-
-        public void setDominance(double dominance) {
-            this.dominance = dominance;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
     }
 
 }

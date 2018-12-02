@@ -1,17 +1,20 @@
 package ru.daniilazarnov.calc.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.calc.dao.LogDao;
-import ru.daniilazarnov.calc.model.Event;
-import ru.daniilazarnov.calc.model.Game;
 import ru.daniilazarnov.calc.serialization.Serializer;
 import ru.daniilazarnov.calc.service.CalcService;
 import ru.daniilazarnov.calc.service.StorageService;
+import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.Game;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,5 +76,21 @@ public class CalcController {
             }
         });
 
+    }
+
+    @PostMapping("/cli")
+    public String cliController() throws JsonProcessingException {
+
+        Path path1 = storageService.loadAll().findFirst().get();
+
+        List<Event> events = logDao.getListEvent(path1)
+                .stream()
+                .sorted(Comparator.comparing(Event::getLocalDateTime))
+                .peek(calcService::calculateAppraisal)
+                .collect(Collectors.toList());
+
+        Game game = new Game(events);
+
+        return serializer.toJSON(game);
     }
 }

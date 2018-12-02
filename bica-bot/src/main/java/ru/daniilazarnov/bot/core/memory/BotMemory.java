@@ -2,11 +2,11 @@ package ru.daniilazarnov.bot.core.memory;
 
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.bot.core.property.BotProperties;
-import ru.daniilazarnov.bot.core.domain.Action;
-import ru.daniilazarnov.bot.core.domain.Actor;
-import ru.daniilazarnov.bot.core.domain.Appraisal;
-import ru.daniilazarnov.bot.core.emotional.AppraisalFunctions;
 import ru.daniilazarnov.bot.util.Util;
+import ru.daniilazarnov.common.functions.AppraisalFunctions;
+import ru.daniilazarnov.common.model.Action;
+import ru.daniilazarnov.common.model.Actor;
+import ru.daniilazarnov.common.model.Appraisal;
 
 import java.util.HashMap;
 import java.util.Map;

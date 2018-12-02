@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.model.Actor;
+import ru.daniilazarnov.common.model.Actor;
 
 import java.util.HashMap;
 import java.util.Map;

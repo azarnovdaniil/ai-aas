@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.serialization.csv.CsvEventSerializer;
-import ru.daniilazarnov.calc.serialization.json.*;
+import ru.daniilazarnov.common.model.*;
+import ru.daniilazarnov.common.serialization.json.*;
 
 @Service
 public class CalcSerializer implements Serializer {

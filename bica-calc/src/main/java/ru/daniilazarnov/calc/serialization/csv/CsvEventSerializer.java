@@ -1,9 +1,9 @@
 package ru.daniilazarnov.calc.serialization.csv;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.model.Event;
-import ru.daniilazarnov.calc.model.State;
 import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.State;
 
 import java.time.format.DateTimeFormatter;
 import java.util.StringJoiner;

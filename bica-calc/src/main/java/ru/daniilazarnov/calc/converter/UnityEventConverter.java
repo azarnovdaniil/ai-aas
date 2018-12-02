@@ -1,8 +1,8 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.model.Event;
-import ru.daniilazarnov.calc.model.UnityLogRow;
+import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.UnityLogRow;
 
 @Component
 public class UnityEventConverter implements EventConverter<UnityLogRow> {

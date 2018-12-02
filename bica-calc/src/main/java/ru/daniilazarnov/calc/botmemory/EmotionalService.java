@@ -1,8 +1,8 @@
 package ru.daniilazarnov.calc.botmemory;
 
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.common.model.*;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.actorAppraisalFunc;
-import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.targetAppraisalFunc;
+import static ru.daniilazarnov.common.functions.AppraisalFunctions.actorAppraisalFunc;
+import static ru.daniilazarnov.common.functions.AppraisalFunctions.targetAppraisalFunc;
 
 @Service
 public class EmotionalService implements BotService {

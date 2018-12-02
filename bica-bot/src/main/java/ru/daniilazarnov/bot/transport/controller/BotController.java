@@ -2,54 +2,37 @@ package ru.daniilazarnov.bot.transport.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.bot.paradigm.BotService;
-import ru.daniilazarnov.bot.transport.dao.EventDao;
-import ru.daniilazarnov.bot.transport.dto.EventTO;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static ru.daniilazarnov.bot.transport.converter.EventConverter.event_eventTO;
+import ru.daniilazarnov.common.model.Event;
 
 @RestController
 public class BotController {
 
     private final BotService botService;
-    private final EventDao eventDao;
 
-    public BotController(BotService botService, EventDao eventDao) {
+    public BotController(BotService botService) {
         this.botService = botService;
-        this.eventDao = eventDao;
     }
 
     @PostMapping("/shooter")
-    public EventTO shooterController(@RequestBody EventTO eventTO) {
-        return botService.eventHandle(eventTO);
+    public Event shooterController(@RequestBody Event event) {
+        return botService.eventHandle(event);
     }
 
     @PostMapping("/teleport")
-    public EventTO teleportController(@RequestBody EventTO eventTO) {
-        return botService.eventHandle(eventTO);
+    public Event teleportController(@RequestBody Event event) {
+        return botService.eventHandle(event);
     }
 
     @PostMapping("/telegram")
-    public EventTO telegramController(@RequestBody EventTO eventTO) {
-        return botService.eventHandle(eventTO);
+    public Event telegramController(@RequestBody Event event) {
+        return botService.eventHandle(event);
     }
 
     @PostMapping("/client")
-    public EventTO clientController(@RequestBody EventTO eventTO) {
-        return botService.eventHandle(eventTO);
-    }
-
-    @RequestMapping("/emulation")
-    public List<EventTO> teleportController() {
-        return eventDao.getListEvent().stream()
-                .map(event_eventTO)
-                .map(botService::eventHandle)
-                .collect(Collectors.toList());
+    public Event clientController(@RequestBody Event event) {
+        return botService.eventHandle(event);
     }
 
 }

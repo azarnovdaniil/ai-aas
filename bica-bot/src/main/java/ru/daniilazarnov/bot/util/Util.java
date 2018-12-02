@@ -1,6 +1,6 @@
 package ru.daniilazarnov.bot.util;
 
-import ru.daniilazarnov.bot.core.domain.Actor;
+import ru.daniilazarnov.common.model.Actor;
 
 public final class Util {
 

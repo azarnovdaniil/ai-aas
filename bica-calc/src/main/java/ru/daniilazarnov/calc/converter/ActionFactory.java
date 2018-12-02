@@ -1,10 +1,10 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.model.Action;
-import ru.daniilazarnov.calc.model.ActionType;
-import ru.daniilazarnov.calc.model.Appraisal;
 import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.common.model.Action;
+import ru.daniilazarnov.common.model.ActionType;
+import ru.daniilazarnov.common.model.Appraisal;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class ActionFactory {
 
     private static final Appraisal ZERO_APPRAISAL = Appraisal.valueOf(0.0, 0.0);
 
-    private Action convert(CalcProperties.Action action) {
+    private Action convert(ru.daniilazarnov.common.property.Action action) {
         return Action.builder()
                 .setActionName(action.getName())
                 .setAppraisal(Appraisal.valueOf(action.getValence(), action.getDominance()))

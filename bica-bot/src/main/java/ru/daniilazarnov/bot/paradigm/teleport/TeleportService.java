@@ -1,32 +1,28 @@
 package ru.daniilazarnov.bot.paradigm.teleport;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.BotCore;
-import ru.daniilazarnov.bot.paradigm.teleport.property.TeleportProperties;
-import ru.daniilazarnov.bot.paradigm.teleport.converter.ActionConverter;
-import ru.daniilazarnov.bot.transport.dto.EventTO;
-import ru.daniilazarnov.bot.core.domain.Action;
-import ru.daniilazarnov.bot.core.domain.Actor;
 import ru.daniilazarnov.bot.core.domain.Operation;
 import ru.daniilazarnov.bot.paradigm.BotService;
+import ru.daniilazarnov.bot.paradigm.teleport.converter.ActionConverter;
+import ru.daniilazarnov.bot.paradigm.teleport.property.TeleportProperties;
+import ru.daniilazarnov.common.model.Action;
+import ru.daniilazarnov.common.model.Actor;
+import ru.daniilazarnov.common.model.Event;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ru.daniilazarnov.bot.paradigm.ProfileParadigm.TELEPORT;
-
 @Service
-@Profile(TELEPORT)
 public class TeleportService implements BotService {
 
     private final BotCore botCore;
     private final TeleportProperties teleportProperties;
     private final Map<String, Action> actions = new HashMap<>();
     private final Map<String, Actor> actors = new HashMap<>();
-    private final Actor mainActor = new Actor("Bot");
+    private final Actor mainActor = Actor.valueOf("Bot");
     private final List<Operation> operations = new ArrayList<>();
 
     public TeleportService(BotCore botCore, TeleportProperties teleportProperties) {
@@ -37,7 +33,7 @@ public class TeleportService implements BotService {
 
     private void init() {
         for (int i = 0; i < teleportProperties.getCountPlayer(); i++) {
-            actors.put("Actor" + i, new Actor("Actor" + i));
+            actors.put("Actor" + i, Actor.valueOf("Actor" + i));
         }
 
         botCore.initMemory(actors.values());
@@ -48,16 +44,17 @@ public class TeleportService implements BotService {
     }
 
     @Override
-    public EventTO eventHandle(EventTO eventTO) {
+    public Event eventHandle(Event event) {
+
         Operation operation = botCore.actionHandle(operations);
 
-        botCore.updateMemory(actions.get(eventTO.getActionName()), actors.get(eventTO.getActorName()));
+        botCore.updateMemory(actions.get(event.getAction().getActionName()), actors.get(event.getActor().getName()));
 
-        eventTO.setActionName(operation.getAction().getActionName());
-        eventTO.setActorName(operation.getActor().getName());
-        eventTO.setTargetName(operation.getTarget().getName());
+//        event.setActionName(operation.getAction().getActionName());
+//        event.setActorName(operation.getActor().getName());
+//        event.setTargetName(operation.getTarget().getName());
 
-        return eventTO;
+        return event;
     }
 
 }
