@@ -15,94 +15,109 @@ logging:
 spring:
   profiles: calculator
 
-before-calc-location: "before-dir"
-after-calc-location: "after-dir"
+date-time-formatter: "M/dd/yyyy HH:mm:ss:[SSS][SS][S]"
+csv-delimiter: ","
 
-initial-valence: 1.0
-initial-dominance: 1.0
+before-calc-location: "/Users/daniilazarnov/logs/before"
+after-calc-location: "/Users/daniilazarnov/logs/after"
+
+initial-valence: 0.0
+initial-dominance: 0.0
 
 system-actions:
   - "Spawned"
   - "BeginRound"
   - "EndRound"
+  - "Spawned"
+  - "Reset"
 
 actions:
   - name: "Kick"
-    valence: 2.0
-    dominance: 2.0
+    valence: -0.2
+    dominance: 0.2
+    type: "NORMAL"
 
   - name: "Ask"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: -0.1
+    type: "NORMAL"
 
   - name: "Saved"
-    valence: 2.0
-    dominance: 2.0
+    valence: 1.8
+    dominance: -0.15
+    type: "NORMAL"
 
   - name: "Thank"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: -0.2
+    type: "NORMAL"
 
   - name: "Greet"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.15
+    type: "NORMAL"
 
   - name: "Activated"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.5
+    dominance: 0.0
+    type: "ALL"
 
   - name: "Deactivated"
-    valence: 2.0
-    dominance: 2.0
+    valence: -1.1
+    dominance: 0.0
+    type: "ALL"
 
   - name: "ExitTP"
-    valence: 2.0
-    dominance: 2.0
-
-  - name: "exitTP"
-    valence: 2.0
-    dominance: 2.0
+    valence: -0.1
+    dominance: 0.0
+    type: "ALL"
 
   - name: "TakeOff"
-    valence: 2.0
-    dominance: 2.0
-
-  - name: "Spawned"
-    valence: 2.0
-    dominance: 2.0
+    valence: 2.7
+    dominance: 0.6
+    type: "SELF"
 
   - name: "Moved"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.0
+    dominance: 0.0
+    type: "SELF"
 
   - name: "Move"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.0
+    dominance: 0.0
+    type: "SELF"
 
   - name: "EnterTP"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.0
+    type: "SELF"
 
   - name: "Escaped"
-    valence: 2.0
-    dominance: 2.0
+    valence: -3.0
+    dominance: 1.0
+    type: "SELF"
 
   - name: "Escape"
-    valence: 2.0
-    dominance: 2.0
+    valence: -3.0
+    dominance: 1.0
+    type: "SELF"
 
   - name: "ConfirmedHuman"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.0
+    type: "NORMAL"
 
   - name: "Shoot"
-    valence: 2.0
-    dominance: 2.0
+    valence: -0.6
+    dominance: 0.4
+    type: "NORMAL"
 
   - name: "Heal"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.9
+    dominance: -0.2
+    type: "NORMAL"
 
   - name: "ConfirmedBot"
-    valence: 2.0
-    dominance: 2.0
+    valence: 0.1
+    dominance: 0.15
+    type: "NORMAL"

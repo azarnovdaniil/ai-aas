@@ -6,12 +6,16 @@ public class Actor {
 
     private final String name;
 
-    public Actor(String name) {
+    private Actor(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public static Actor valueOf(String name) {
+        return new Actor(name);
     }
 
     @Override
@@ -29,10 +33,4 @@ public class Actor {
         return name != null ? name.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

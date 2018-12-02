@@ -1,4 +1,4 @@
-package ru.daniilazarnov.calc.dao;
+package ru.daniilazarnov.calc.botmemory;
 
 import org.apache.commons.math3.complex.Complex;
 import ru.daniilazarnov.calc.domain.Appraisal;

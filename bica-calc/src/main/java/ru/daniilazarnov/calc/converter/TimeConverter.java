@@ -1,23 +1,22 @@
 package ru.daniilazarnov.calc.converter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import org.springframework.stereotype.Component;
+import ru.daniilazarnov.calc.property.CalcProperties;
+
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
-public final class TimeConverter {
+@Component
+public class TimeConverter {
 
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+    private final DateTimeFormatter dateTimeFormatter;
 
-    private TimeConverter() {
+    public TimeConverter(CalcProperties properties) {
+        this.dateTimeFormatter = DateTimeFormatter.ofPattern(properties.getDateTimeFormatter());
     }
 
-    public static LocalDateTime stringToDate(String str) throws ParseException {
-        return FORMAT.parse(str)
-                .toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-
+    LocalDateTime stringToDate(String str) {
+        return LocalDateTime.parse(str, dateTimeFormatter);
     }
 
 }

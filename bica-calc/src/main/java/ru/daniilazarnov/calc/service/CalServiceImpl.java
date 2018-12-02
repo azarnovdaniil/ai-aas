@@ -1,23 +1,20 @@
 package ru.daniilazarnov.calc.service;
 
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.calc.dao.MemoryDao;
+import ru.daniilazarnov.calc.botmemory.BotService;
 import ru.daniilazarnov.calc.domain.Event;
-import ru.daniilazarnov.calc.domain.UnityLogRow;
 
 @Service
 public class CalServiceImpl implements CalcService {
 
-    private final MemoryDao memoryDao;
+    private final BotService botService;
 
-    public CalServiceImpl(MemoryDao memoryDao) {
-        this.memoryDao = memoryDao;
+    public CalServiceImpl(BotService botService) {
+        this.botService = botService;
     }
 
     @Override
-    public Event calculateAppraisal(UnityLogRow unityLogRow) {
-        memoryDao.updateMemory(unityLogRow);
-
-        return new Event(unityLogRow, memoryDao.getAppraisalState(unityLogRow.getSessionId()));
+    public Event calculateAppraisal(Event event) {
+        return botService.updateMemory(event);
     }
 }

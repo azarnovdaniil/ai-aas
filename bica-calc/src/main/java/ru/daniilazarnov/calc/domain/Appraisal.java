@@ -2,6 +2,8 @@ package ru.daniilazarnov.calc.domain;
 
 import org.apache.commons.math3.complex.Complex;
 
+import java.util.Objects;
+
 public class Appraisal {
 
     private final Complex value;
@@ -37,7 +39,7 @@ public class Appraisal {
 
         Appraisal appraisal = (Appraisal) o;
 
-        return value != null ? value.equals(appraisal.value) : appraisal.value == null;
+        return Objects.equals(value, appraisal.value);
     }
 
     @Override

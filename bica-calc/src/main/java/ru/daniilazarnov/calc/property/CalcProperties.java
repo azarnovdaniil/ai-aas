@@ -15,6 +15,8 @@ public class CalcProperties {
     private List<Action> actions = new ArrayList<>();
     private List<String> systemActions = new ArrayList<>();
     private String beforeCalcLocation;
+    private String csvDelimiter;
+    private String dateTimeFormatter;
 
     public String getBeforeCalcLocation() {
         return beforeCalcLocation;
@@ -66,10 +68,27 @@ public class CalcProperties {
         this.systemActions = systemActions;
     }
 
+    public String getCsvDelimiter() {
+        return csvDelimiter;
+    }
+
+    public void setCsvDelimiter(String csvDelimiter) {
+        this.csvDelimiter = csvDelimiter;
+    }
+
+    public String getDateTimeFormatter() {
+        return dateTimeFormatter;
+    }
+
+    public void setDateTimeFormatter(String dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
+    }
+
     public static class Action {
         private String name;
         private double valence;
         private double dominance;
+        private String type;
 
         public String getName() {
             return name;
@@ -93,6 +112,14 @@ public class CalcProperties {
 
         public void setDominance(double dominance) {
             this.dominance = dominance;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
     }
 

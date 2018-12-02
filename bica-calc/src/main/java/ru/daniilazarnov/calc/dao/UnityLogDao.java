@@ -1,43 +1,60 @@
 package ru.daniilazarnov.calc.dao;
 
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import ru.daniilazarnov.calc.Calc;
+import ru.daniilazarnov.calc.converter.LogConverter;
+import ru.daniilazarnov.calc.domain.Event;
 import ru.daniilazarnov.calc.domain.UnityLogRow;
-import ru.daniilazarnov.calc.service.StorageService;
+import ru.daniilazarnov.calc.property.CalcProperties;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class UnityLogDao implements LogDao {
 
-    private final StorageService storageService;
+    private final String csvDelimiter;
+    private final LogConverter logConverter;
 
-    public UnityLogDao(StorageService storageService) {
-        this.storageService = storageService;
+    private static final Logger logger = LoggerFactory.getLogger(UnityLogDao.class);
+
+    public UnityLogDao(CalcProperties properties, LogConverter logConverter) {
+        this.csvDelimiter = properties.getCsvDelimiter();
+        this.logConverter = logConverter;
     }
 
     @Override
-    public List<UnityLogRow> getListEvent() {
+    public List<Event> getListEvent(Path path) {
+        return getUnityLogList(path).stream()
+                .map(logConverter::logToEvent)
+                .collect(Collectors.toList());
+    }
 
-        try (Reader reader = new InputStreamReader(Calc.class.getClassLoader().getResourceAsStream("social.csv"))) {
+    private List<UnityLogRow> getUnityLogList(Path path) {
 
-            CsvToBean<UnityLogRow> csvToBean = new CsvToBeanBuilder<UnityLogRow>(reader)
-                    .withType(UnityLogRow.class)
-                    .withSeparator(',')
-                    .withIgnoreLeadingWhiteSpace(true)
-                    .build();
+        List<UnityLogRow> unityLogRows = new ArrayList<>();
 
-            return csvToBean.parse();
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] row = line.split(csvDelimiter);
+                UnityLogRow unityLogRow = UnityLogRow.valueOf(row);
 
+                if (unityLogRow.getSessionId() != null) {
+                    unityLogRows.add(unityLogRow);
+                }
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return List.of();
         }
+        return unityLogRows;
     }
 
 }

@@ -1,41 +1,93 @@
 package ru.daniilazarnov.calc.domain;
 
-import com.opencsv.CSVWriter;
-
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
-import java.util.Optional;
-import java.util.StringJoiner;
+import java.util.Set;
 
 public class Event {
 
-    private LocalDateTime timeStamp;
+    private LocalDateTime localDateTime;
     private String sessionId;
-    private String participantId;
     private Action action;
-    private Optional<Actor> target = Optional.empty();
-    private Optional<Actor> actor = Optional.empty();
-    private Map<String, String> multiValueMap = new HashMap<>();
+    private Actor target;
+    private Actor actor;
+    private Map<String, Number> multiValueMap = new LinkedHashMap<>();
+    private Set<State> appraisalStateSet = new LinkedHashSet<>();
 
-    //2018-04-04 11:02:59.446 +03:00
-
-
-    private UnityLogRow unityLogRow;
-    private String appraisalState;
-
-    //FIXME временное решение
-    public Event(UnityLogRow unityLogRow, String appraisalState) {
-        this.unityLogRow = unityLogRow;
-        this.appraisalState = appraisalState;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public String toCSV() {
-        StringJoiner joiner = new StringJoiner(String.valueOf(CSVWriter.DEFAULT_SEPARATOR));
-        joiner.add(unityLogRow.toCSV())
-                .add(appraisalState);
+    public String getSessionId() {
+        return sessionId;
+    }
 
-        return joiner.toString();
+    public Action getAction() {
+        return action;
+    }
+
+    public Actor getTarget() {
+        return target;
+    }
+
+    public Actor getActor() {
+        return actor;
+    }
+
+    public Map<String, Number> getMultiValueMap() {
+        return multiValueMap;
+    }
+
+    public static Builder newBuilder() {
+        return new Event().new Builder();
+    }
+
+    public Set<State> getAppraisalStateSet() {
+        return appraisalStateSet;
+    }
+
+    public class Builder {
+
+        private Builder() {
+            // private constructor
+        }
+
+        public Builder setLocalDateTime(LocalDateTime localDateTime) {
+            Event.this.localDateTime = localDateTime;
+            return this;
+        }
+
+        public Builder setSessionId(String sessionId) {
+            Event.this.sessionId = sessionId;
+            return this;
+        }
+
+        public Builder setAction(Action action) {
+            Event.this.action = action;
+            return this;
+        }
+
+        public Builder setActor(Actor actor) {
+            Event.this.actor = actor;
+            return this;
+        }
+
+        public Builder setTarget(Actor target) {
+            Event.this.target = target;
+            return this;
+        }
+
+        public Builder setMultiValue(String key, Number value) {
+            Event.this.multiValueMap.put(key, value);
+            return this;
+        }
+
+        public Event build() {
+            return Event.this;
+        }
+
     }
 
 }
