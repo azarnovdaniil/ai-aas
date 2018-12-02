@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.actorAppraisalFunc;
 import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.targetAppraisalFunc;
@@ -115,6 +116,7 @@ public class EmotionalService implements BotService {
         memoryState.get(sessionId).add(State.valueOf(actor, actor, initAppraisal));
         memoryState.get(sessionId).stream()
                 .map(State::getActor)
+                .collect(Collectors.toSet())
                 .forEach(actor1 -> {
                     memoryState.get(sessionId).add(State.valueOf(actor, actor1, initAppraisal));
                     memoryState.get(sessionId).add(State.valueOf(actor1, actor, initAppraisal));

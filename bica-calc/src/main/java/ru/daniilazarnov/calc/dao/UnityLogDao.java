@@ -3,7 +3,7 @@ package ru.daniilazarnov.calc.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import ru.daniilazarnov.calc.converter.LogConverter;
+import ru.daniilazarnov.calc.converter.EventConverter;
 import ru.daniilazarnov.calc.model.Event;
 import ru.daniilazarnov.calc.model.UnityLogRow;
 import ru.daniilazarnov.calc.property.CalcProperties;
@@ -20,19 +20,19 @@ import java.util.stream.Collectors;
 public class UnityLogDao implements LogDao {
 
     private final String csvDelimiter;
-    private final LogConverter logConverter;
+    private final EventConverter<UnityLogRow> eventConverter;
 
     private static final Logger logger = LoggerFactory.getLogger(UnityLogDao.class);
 
-    public UnityLogDao(CalcProperties properties, LogConverter logConverter) {
+    public UnityLogDao(CalcProperties properties, EventConverter<UnityLogRow> eventConverter) {
         this.csvDelimiter = properties.getCsvDelimiter();
-        this.logConverter = logConverter;
+        this.eventConverter = eventConverter;
     }
 
     @Override
     public List<Event> getListEvent(Path path) {
         return getUnityLogList(path).stream()
-                .map(logConverter::logToEvent)
+                .map(eventConverter::logToEvent)
                 .collect(Collectors.toList());
     }
 
@@ -44,7 +44,7 @@ public class UnityLogDao implements LogDao {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(csvDelimiter);
-                UnityLogRow unityLogRow = UnityLogRow.valueOf(row);
+                UnityLogRow unityLogRow = new UnityLogRow(row);
 
                 if (unityLogRow.getSessionId() != null) {
                     unityLogRows.add(unityLogRow);

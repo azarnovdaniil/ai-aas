@@ -19,8 +19,9 @@
 
     <modules>
         <module>bica-bot</module>
-        <module>bica-client</module>
+        <module>bica-web</module>
         <module>bica-calc</module>
+        <module>bica-cli</module>
     </modules>
 
     <properties>

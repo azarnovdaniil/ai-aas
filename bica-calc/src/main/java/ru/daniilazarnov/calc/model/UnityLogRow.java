@@ -1,36 +1,22 @@
 package ru.daniilazarnov.calc.model;
 
-public class UnityLogRow {
+public class UnityLogRow extends LogRow {
 
-    private UnityLogRow() {
-    }
-
-    private String timeStamp;
-    private String sessionId;
-    private String action = "";
-    private String actor = "";
     private double x;
     private double y;
     private double z;
-    private String target = "";
 
-    public static UnityLogRow valueOf(String... strings) {
-
-        UnityLogRow unityLogRow = new UnityLogRow();
-
+    public UnityLogRow(String... strings) {
         for (int i = 0; i < strings.length; i++) {
-            unityLogRow.setValue(strings, i);
+            this.setValue(strings, i);
         }
-
-        if (unityLogRow.action.equals("Move")) {
-            unityLogRow.target = "";
-            return unityLogRow;
+        if (this.action.equals("Move")) {
+            this.target = "";
         }
-
-        return unityLogRow;
     }
 
-    private void setValue(String[] values, int i) {
+    @Override
+    public void setValue(String[] values, int i) {
         switch (i) {
             case 0:
                 this.timeStamp = values[0];
@@ -61,22 +47,6 @@ public class UnityLogRow {
         }
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public String getActor() {
-        return actor;
-    }
-
     public double getX() {
         return x;
     }
@@ -87,10 +57,6 @@ public class UnityLogRow {
 
     public double getZ() {
         return z;
-    }
-
-    public String getTarget() {
-        return target;
     }
 
 }
