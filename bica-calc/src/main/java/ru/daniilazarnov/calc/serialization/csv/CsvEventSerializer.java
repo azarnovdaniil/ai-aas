@@ -32,10 +32,10 @@ public class CsvEventSerializer {
         }
 
         for (State state : event.getAppraisalStateSet()) {
-            joiner.add(state.getActor().getName());
-            joiner.add(state.getTarget().getName());
-            joiner.add(String.valueOf(state.getAppraisal().getValence()));
-            joiner.add(String.valueOf(state.getAppraisal().getDominance()));
+            joiner.add(state.getActor().getName())
+                    .add(state.getTarget().getName())
+                    .add(String.valueOf(state.getAppraisal().getValence()))
+                    .add(String.valueOf(state.getAppraisal().getDominance()));
         }
 
         return joiner.toString();

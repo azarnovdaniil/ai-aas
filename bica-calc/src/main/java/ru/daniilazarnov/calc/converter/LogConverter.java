@@ -1,7 +1,6 @@
 package ru.daniilazarnov.calc.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.model.Actor;
 import ru.daniilazarnov.calc.model.Event;
 import ru.daniilazarnov.calc.model.UnityLogRow;
 
@@ -9,20 +8,22 @@ import ru.daniilazarnov.calc.model.UnityLogRow;
 public class LogConverter {
 
     private final TimeConverter timeConverter;
-    private final ActionFactory factory;
+    private final ActionFactory actionFactory;
+    private final ActorFactory actorFactory;
 
-    public LogConverter(TimeConverter timeConverter, ActionFactory factory) {
+    public LogConverter(TimeConverter timeConverter, ActionFactory actionFactory, ActorFactory actorFactory) {
         this.timeConverter = timeConverter;
-        this.factory = factory;
+        this.actionFactory = actionFactory;
+        this.actorFactory = actorFactory;
     }
 
     public Event logToEvent(UnityLogRow logRow) {
         return Event.newBuilder()
                 .setLocalDateTime(timeConverter.stringToDate(logRow.getTimeStamp()))
                 .setSessionId(logRow.getSessionId())
-                .setAction(factory.getAction(logRow.getAction()))
-                .setActor(Actor.valueOf(logRow.getActor()))
-                .setTarget(Actor.valueOf(logRow.getTarget()))
+                .setAction(actionFactory.getAction(logRow.getAction()))
+                .setActor(actorFactory.getActor(logRow.getSessionId(), logRow.getActor()))
+                .setTarget(actorFactory.getActor(logRow.getSessionId(), logRow.getTarget()))
                 .setMultiValue("X", logRow.getX())
                 .setMultiValue("Y", logRow.getY())
                 .setMultiValue("Z", logRow.getZ())

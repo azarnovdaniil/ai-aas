@@ -1,7 +1,6 @@
 package ru.daniilazarnov.calc.botmemory;
 
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.calc.domain.*;
 import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.property.CalcProperties;
 
@@ -29,18 +28,18 @@ public class EmotionalService implements BotService {
         if (!memoryState.containsKey(sessionId)) {
             initNewSession(sessionId);
             if (!actor.getName().isEmpty()) {
-                initMemoryForActorInSession1(sessionId, actor);
+                initMemoryForActorInSession(sessionId, actor);
             }
             if (!target.getName().isEmpty()) {
-                initMemoryForActorInSession1(sessionId, target);
+                initMemoryForActorInSession(sessionId, target);
             }
         }
 
         if (!actor.getName().isEmpty() && isNotDetermined(sessionId, actor)) {
-            initMemoryForActorInSession1(sessionId, actor);
+            initMemoryForActorInSession(sessionId, actor);
         }
         if (!target.getName().isEmpty() && isNotDetermined(sessionId, target)) {
-            initMemoryForActorInSession1(sessionId, target);
+            initMemoryForActorInSession(sessionId, target);
         }
 
         switch (event.getAction().getActionType()) {
@@ -54,6 +53,7 @@ public class EmotionalService implements BotService {
                 updateSelfAppraisal(sessionId, actor, action);
                 break;
             case SYSTEM:
+            default:
                 break;
         }
 
@@ -111,7 +111,7 @@ public class EmotionalService implements BotService {
         memoryState.put(sessionId, new LinkedHashSet<>());
     }
 
-    private void initMemoryForActorInSession1(String sessionId, Actor actor) {
+    private void initMemoryForActorInSession(String sessionId, Actor actor) {
 
         memoryState.get(sessionId).add(State.valueOf(actor, actor, appraisal));
         memoryState.get(sessionId).stream()

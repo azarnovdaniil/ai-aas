@@ -1,16 +1,13 @@
 package ru.daniilazarnov.calc.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.calc.dao.LogDao;
-import ru.daniilazarnov.calc.domain.*;
-import ru.daniilazarnov.calc.model.*;
-import ru.daniilazarnov.calc.serialization.csv.CsvEventSerializer;
-import ru.daniilazarnov.calc.serialization.json.*;
+import ru.daniilazarnov.calc.model.Event;
+import ru.daniilazarnov.calc.model.Game;
+import ru.daniilazarnov.calc.serialization.Serializer;
 import ru.daniilazarnov.calc.service.CalcService;
 import ru.daniilazarnov.calc.service.StorageService;
 
@@ -22,18 +19,20 @@ import java.util.stream.Collectors;
 @RestController
 public class CalcController {
 
-    private final CsvEventSerializer csvEventSerializer;
     private final CalcService calcService;
     private final StorageService storageService;
+    private final Serializer serializer;
     private final LogDao logDao;
 
     private static final Logger logger = LoggerFactory.getLogger(CalcController.class);
 
-    public CalcController(CalcService calcService, LogDao logDao, StorageService storageService, CsvEventSerializer csvEventSerializer) {
-        this.csvEventSerializer = csvEventSerializer;
+    public CalcController(CalcService calcService, LogDao logDao,
+                          StorageService storageService, Serializer serializer) {
+
         this.calcService = calcService;
         this.storageService = storageService;
         this.logDao = logDao;
+        this.serializer = serializer;
     }
 
     @RequestMapping("/calculate")
@@ -44,7 +43,7 @@ public class CalcController {
                     .stream()
                     .sorted(Comparator.comparing(Event::getLocalDateTime))
                     .peek(calcService::calculateAppraisal)
-                    .map(csvEventSerializer::serialize)
+                    .map(serializer::toCSV)
                     .collect(Collectors.toList());
 
             try {
@@ -58,18 +57,6 @@ public class CalcController {
     @RequestMapping("/json")
     public void jsonController() {
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(Game.class, new GameSerializer());
-        module.addSerializer(Event.class, new EventSerializer());
-        module.addSerializer(Action.class, new ActionSerializer());
-        module.addSerializer(Actor.class, new ActorSerializer());
-        module.addSerializer(Appraisal.class, new AppraisalSerializer());
-        module.addSerializer(State.class, new StateSerializer());
-
-        mapper.registerModule(module);
-
         storageService.loadAll().forEach(path -> {
             List<Event> events = logDao.getListEvent(path)
                     .stream()
@@ -80,7 +67,7 @@ public class CalcController {
             Game game = new Game(events);
 
             try {
-                storageService.writeJson(path, mapper.writeValueAsString(game));
+                storageService.writeJson(path, serializer.toJSON(game));
             } catch (IOException e) {
                 logger.error(e.getMessage());
             }
