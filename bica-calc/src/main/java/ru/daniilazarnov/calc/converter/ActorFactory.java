@@ -4,29 +4,27 @@ import org.springframework.stereotype.Component;
 import ru.daniilazarnov.calc.model.Actor;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 
 @Component
 public class ActorFactory {
 
-    private final Map<String, HashSet<Actor>> sessionsWithActors = new HashMap<>();
+    private final Map<String, Map<String, Actor>> sessionsWithActors = new HashMap<>();
 
     Actor getActor(String sessionId, String actorName) {
         if (sessionsWithActors.containsKey(sessionId)) {
-            for (Actor actor : sessionsWithActors.get(sessionId)) {
-                if (actor.getName().equals(actorName)) {
-                    return actor;
-                }
-            }
-            Actor actor = Actor.valueOf(actorName);
-            sessionsWithActors.get(sessionId).add(actor);
+            Map<String, Actor> actorMap = sessionsWithActors.get(sessionId);
 
-            return actor;
+            if (actorMap.containsKey(actorName)) {
+                return actorMap.get(actorName);
+            } else {
+                Actor actor = Actor.valueOf(actorName);
+                actorMap.put(actorName, actor);
+                return actor;
+            }
         } else {
             Actor actor = Actor.valueOf(actorName);
-            sessionsWithActors.put(sessionId, new HashSet<>(List.of(actor)));
+            sessionsWithActors.put(sessionId, new HashMap<>(Map.of(actorName, actor)));
             return actor;
         }
     }

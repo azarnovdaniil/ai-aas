@@ -21,7 +21,7 @@ public class EventSerializer extends JsonSerializer<Event> {
         jGen.writeObjectField("action", event.getAction());
         jGen.writeObjectField("actor", event.getActor());
         jGen.writeObjectField("target", event.getTarget());
-        jGen.writeObjectField("multi-value", event.getMultiValueMap());
+        jGen.writeObjectField("multiValues", event.getMultiValueMap());
         jGen.writeObjectField("states", event.getAppraisalStateSet());
 
         jGen.writeEndObject();

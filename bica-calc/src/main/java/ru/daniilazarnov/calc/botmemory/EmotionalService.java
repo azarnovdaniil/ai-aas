@@ -4,17 +4,22 @@ import org.springframework.stereotype.Service;
 import ru.daniilazarnov.calc.model.*;
 import ru.daniilazarnov.calc.property.CalcProperties;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+
+import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.actorAppraisalFunc;
+import static ru.daniilazarnov.calc.botmemory.AppraisalFunctions.targetAppraisalFunc;
 
 @Service
 public class EmotionalService implements BotService {
 
     private final Map<String, Set<State>> memoryState = new HashMap<>();
-    private final Appraisal appraisal;
+    private final Appraisal initAppraisal;
 
     public EmotionalService(CalcProperties calcProperties) {
-        appraisal = Appraisal.valueOf(calcProperties.getInitialValence(), calcProperties.getInitialDominance());
+        initAppraisal = Appraisal.valueOf(calcProperties.getInitialValence(), calcProperties.getInitialDominance());
     }
 
     @Override
@@ -74,10 +79,10 @@ public class EmotionalService implements BotService {
     private void updateAppraisal(String sessionId, Actor actor, Actor target, Action action) {
         for (State state : memoryState.get(sessionId)) {
             if (state.getActor().equals(actor) && state.getTarget().equals(target)) {
-                state.setAppraisal(AppraisalFunctions.actorAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
+                state.setAppraisal(actorAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
             }
             if (state.getActor().equals(target) && state.getTarget().equals(actor)) {
-                state.setAppraisal(AppraisalFunctions.targetAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
+                state.setAppraisal(targetAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
             }
         }
     }
@@ -85,22 +90,16 @@ public class EmotionalService implements BotService {
     private void updateAllAppraisal(String sessionId, Actor actor, Action action) {
         for (State state : memoryState.get(sessionId)) {
             if (state.getActor().equals(actor)) {
-                state.setAppraisal(AppraisalFunctions.actorAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
+                state.setAppraisal(actorAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
             }
             if (state.getTarget().equals(actor)) {
-                state.setAppraisal(AppraisalFunctions.targetAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
+                state.setAppraisal(targetAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
             }
         }
     }
 
     private void updateSelfAppraisal(String sessionId, Actor actor, Action action) {
-        for (State state : memoryState.get(sessionId)) {
-            if (state.getActor().equals(actor) && state.getTarget().equals(actor)) {
-                state.setAppraisal(AppraisalFunctions.actorAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
-                state.setAppraisal(AppraisalFunctions.targetAppraisalFunc.apply(action.getAppraisal(), state.getAppraisal()));
-                break;
-            }
-        }
+        updateAppraisal(sessionId, actor, actor, action);
     }
 
     private Set<State> getAppraisalState(String sessionId) {
@@ -113,13 +112,12 @@ public class EmotionalService implements BotService {
 
     private void initMemoryForActorInSession(String sessionId, Actor actor) {
 
-        memoryState.get(sessionId).add(State.valueOf(actor, actor, appraisal));
+        memoryState.get(sessionId).add(State.valueOf(actor, actor, initAppraisal));
         memoryState.get(sessionId).stream()
                 .map(State::getActor)
-                .collect(Collectors.toSet())
                 .forEach(actor1 -> {
-                    memoryState.get(sessionId).add(State.valueOf(actor, actor1, appraisal));
-                    memoryState.get(sessionId).add(State.valueOf(actor1, actor, appraisal));
+                    memoryState.get(sessionId).add(State.valueOf(actor, actor1, initAppraisal));
+                    memoryState.get(sessionId).add(State.valueOf(actor1, actor, initAppraisal));
                 });
     }
 
