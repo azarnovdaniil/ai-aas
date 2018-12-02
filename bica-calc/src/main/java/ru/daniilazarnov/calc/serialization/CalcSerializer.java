@@ -9,12 +9,12 @@ import ru.daniilazarnov.calc.serialization.csv.CsvEventSerializer;
 import ru.daniilazarnov.calc.serialization.json.*;
 
 @Service
-public class CalcSerilizer implements Serializer {
+public class CalcSerializer implements Serializer {
 
     private final CsvEventSerializer csvEventSerializer;
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public CalcSerilizer(CsvEventSerializer csvEventSerializer) {
+    public CalcSerializer(CsvEventSerializer csvEventSerializer) {
         this.csvEventSerializer = csvEventSerializer;
 
         SimpleModule module = new SimpleModule();
