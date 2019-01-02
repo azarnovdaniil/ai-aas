@@ -6,7 +6,7 @@ import ru.daniilazarnov.common.model.Operation;
 
 public interface ParadigmService {
 
-    void eventHandle(Event eventTO);
+    Event eventHandle(Event eventTO);
 
     Operation executeOperation();
 

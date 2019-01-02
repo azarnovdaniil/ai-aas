@@ -15,15 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class Client {
+public class ParadigmClient {
 
-    private static final Logger logger = LoggerFactory.getLogger(Client.class);
+    private static final Logger logger = LoggerFactory.getLogger(ParadigmClient.class);
 
     private final ParadigmService paradigmService;
     private final RestTemplate restTemplate = new RestTemplate();
     private final Map<String, Map<Actor, TaskScheduler>> taskSchedulers = new HashMap<>();
 
-    public Client(ParadigmService paradigmService) {
+    public ParadigmClient(ParadigmService paradigmService) {
         this.paradigmService = paradigmService;
     }
 

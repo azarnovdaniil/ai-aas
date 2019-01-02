@@ -30,14 +30,14 @@ public class TeleportService implements ParadigmService {
     }
 
     @Override
-    public void eventHandle(Event event) {
+    public Event eventHandle(Event event) {
         String sessionId = event.getSessionId();
 
         addOperations(sessionId, event.getActor());
         addOperations(sessionId, event.getTarget());
         botCore.addOperations(sessionId, allOperations.get(sessionId));
 
-        botCore.actionHandle(event);
+        return botCore.actionHandle(event);
     }
 
     private void addOperations(String sessionId, Actor actor) {

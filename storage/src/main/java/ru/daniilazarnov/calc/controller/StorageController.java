@@ -2,6 +2,8 @@ package ru.daniilazarnov.calc.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.bot.core.service.MemoryService;
@@ -33,6 +35,11 @@ public class StorageController {
         this.storageService = storageService;
         this.logDao = logDao;
         this.serializer = serializer;
+    }
+
+    @PostMapping("/storage")
+    public void saveStorage(@RequestBody Event event) {
+        logger.info(serializer.toCSV(event));
     }
 
     @RequestMapping("/calculate")

@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
-import ru.daniilazarnov.bot.transport.client.Client;
+import ru.daniilazarnov.bot.transport.client.ParadigmClient;
+import ru.daniilazarnov.bot.transport.client.StorageClient;
 import ru.daniilazarnov.common.model.Actor;
 import ru.daniilazarnov.common.model.Event;
 
@@ -13,11 +14,13 @@ import ru.daniilazarnov.common.model.Event;
 public class Controller {
 
     private final ParadigmService paradigmService;
-    private final Client client;
+    private final ParadigmClient paradigmClient;
+    private final StorageClient storageClient;
 
-    public Controller(ParadigmService paradigmService, Client client) {
+    public Controller(ParadigmService paradigmService, ParadigmClient paradigmClient, StorageClient storageClient) {
         this.paradigmService = paradigmService;
-        this.client = client;
+        this.paradigmClient = paradigmClient;
+        this.storageClient = storageClient;
     }
 
     @PostMapping("/teleport")
@@ -27,16 +30,16 @@ public class Controller {
             paradigmService.initSession(sessionId);
         }
 
-        paradigmService.eventHandle(event);
+        storageClient.saveIntoStorage(paradigmService.eventHandle(event));
     }
 
     @PostMapping(value = "/teleport/init", params = {"sessionId", "botName"})
     public void teleportInitController(@RequestParam("sessionId") String sessionId, @RequestParam("botName") String botName) {
         if (!paradigmService.isInitSession(sessionId)) {
             paradigmService.initSession(sessionId);
-            client.initBot(sessionId, Actor.valueOf(botName));
+            paradigmClient.initBot(sessionId, Actor.valueOf(botName));
         } else {
-            client.initBot(sessionId, Actor.valueOf(botName));
+            paradigmClient.initBot(sessionId, Actor.valueOf(botName));
         }
     }
 
