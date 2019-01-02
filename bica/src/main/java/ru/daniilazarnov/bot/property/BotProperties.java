@@ -15,6 +15,7 @@ public class BotProperties {
 
     private String gameConfigLocation;
     private String clientUrl;
+    private String storageUrl;
 
     public void setGameConfigLocation(String gameConfigLocation) {
         this.gameConfigLocation = gameConfigLocation;
@@ -26,6 +27,14 @@ public class BotProperties {
 
     public void setClientUrl(String clientUrl) {
         this.clientUrl = clientUrl;
+    }
+
+    public String getStorageUrl() {
+        return storageUrl;
+    }
+
+    public void setStorageUrl(String storageUrl) {
+        this.storageUrl = storageUrl;
     }
 
     @Bean

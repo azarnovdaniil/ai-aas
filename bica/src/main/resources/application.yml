@@ -8,3 +8,4 @@ logging:
 
 game-config-location: "/Users/daniilazarnov/config/game_config.json"
 client-url: "http://localhost:8081/teleport/"
+storage-url: "http://localhost:8082/storage"

@@ -1,4 +1,4 @@
-package ru.daniilazarnov.simplebot.core.emotional;
+package ru.daniilazarnov.bot.core.emotional;
 
 import org.junit.jupiter.api.Test;
 import ru.daniilazarnov.common.model.data.Appraisal;

@@ -30,7 +30,7 @@ public class Controller {
             paradigmService.initSession(sessionId);
         }
 
-        storageClient.saveIntoStorage(paradigmService.eventHandle(event));
+        storageClient.sendIntoStorage(paradigmService.eventHandle(event));
     }
 
     @PostMapping(value = "/teleport/init", params = {"sessionId", "botName"})
