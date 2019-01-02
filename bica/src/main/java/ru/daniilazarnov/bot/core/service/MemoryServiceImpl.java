@@ -2,9 +2,9 @@ package ru.daniilazarnov.bot.core.service;
 
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.memory.MemoryDao;
-import ru.daniilazarnov.common.model.Action;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.data.Action;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Event;
 
 @Service
 public class MemoryServiceImpl implements MemoryService {

@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Operation;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Operation;
 
 import java.time.Duration;
 import java.util.HashMap;

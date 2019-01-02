@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import ru.daniilazarnov.common.config.GameConfig;
-import ru.daniilazarnov.common.model.Action;
-import ru.daniilazarnov.common.model.Appraisal;
+import ru.daniilazarnov.common.model.data.Action;
+import ru.daniilazarnov.common.model.data.Appraisal;
 
 import java.io.IOException;
 import java.util.List;

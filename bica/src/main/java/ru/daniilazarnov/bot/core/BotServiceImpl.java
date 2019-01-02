@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.emotional.OperationService;
 import ru.daniilazarnov.bot.core.rational.RationalService;
 import ru.daniilazarnov.bot.core.service.MemoryService;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Event;
-import ru.daniilazarnov.common.model.Operation;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.data.Operation;
 
 import java.util.Set;
 

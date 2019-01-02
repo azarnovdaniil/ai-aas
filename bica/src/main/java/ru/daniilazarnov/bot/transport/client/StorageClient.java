@@ -2,7 +2,7 @@ package ru.daniilazarnov.bot.transport.client;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.data.Event;
 
 @Service
 public class StorageClient {

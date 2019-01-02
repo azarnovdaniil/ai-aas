@@ -7,8 +7,8 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Operation;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Operation;
 
 import java.time.Duration;
 import java.util.HashMap;

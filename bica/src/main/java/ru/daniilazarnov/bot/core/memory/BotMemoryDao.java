@@ -2,10 +2,10 @@ package ru.daniilazarnov.bot.core.memory;
 
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.common.config.GameConfig;
-import ru.daniilazarnov.common.model.Action;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Appraisal;
-import ru.daniilazarnov.common.model.State;
+import ru.daniilazarnov.common.model.data.Action;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Appraisal;
+import ru.daniilazarnov.common.model.data.State;
 
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -13,8 +13,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-import static ru.daniilazarnov.common.functions.AppraisalFunctions.actorAppraisalFunc;
-import static ru.daniilazarnov.common.functions.AppraisalFunctions.targetAppraisalFunc;
+import static ru.daniilazarnov.bot.core.emotional.functions.AppraisalFunctions.actorAppraisalFunc;
+import static ru.daniilazarnov.bot.core.emotional.functions.AppraisalFunctions.targetAppraisalFunc;
 
 @Repository
 public class BotMemoryDao implements MemoryDao {

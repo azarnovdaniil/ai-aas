@@ -10,8 +10,8 @@ import ru.daniilazarnov.bot.core.service.MemoryService;
 import ru.daniilazarnov.calc.storage.LogDao;
 import ru.daniilazarnov.calc.storage.serialization.Serializer;
 import ru.daniilazarnov.calc.storage.system.StorageService;
-import ru.daniilazarnov.common.model.Event;
-import ru.daniilazarnov.common.model.Game;
+import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.data.Game;
 
 import java.io.IOException;
 import java.util.Comparator;

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.calc.storage.serialization.csv.CsvEventSerializer;
-import ru.daniilazarnov.common.model.*;
-import ru.daniilazarnov.common.serialization.json.serializers.*;
+import ru.daniilazarnov.common.model.data.*;
+import ru.daniilazarnov.common.model.serialization.json.serializers.*;
 
 @Service
 public class CalcSerializer implements Serializer {

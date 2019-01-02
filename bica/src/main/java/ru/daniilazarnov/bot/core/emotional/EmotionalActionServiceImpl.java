@@ -3,14 +3,14 @@ package ru.daniilazarnov.bot.core.emotional;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.memory.MemoryDao;
 import ru.daniilazarnov.bot.core.rational.RationalService;
-import ru.daniilazarnov.common.model.Actor;
-import ru.daniilazarnov.common.model.Appraisal;
-import ru.daniilazarnov.common.model.Operation;
-import ru.daniilazarnov.common.model.State;
+import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.data.Appraisal;
+import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.data.State;
 
 import java.util.*;
 
-import static ru.daniilazarnov.common.functions.AppraisalFunctions.likelyHoodFunc;
+import static ru.daniilazarnov.bot.core.emotional.functions.AppraisalFunctions.likelyHoodFunc;
 
 @Service
 public class EmotionalActionServiceImpl implements EmotionalActionService {

@@ -2,8 +2,8 @@ package ru.daniilazarnov.common.config;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.daniilazarnov.common.config.serialization.GameConfigDeserializer;
-import ru.daniilazarnov.common.model.Action;
-import ru.daniilazarnov.common.model.Appraisal;
+import ru.daniilazarnov.common.model.data.Action;
+import ru.daniilazarnov.common.model.data.Appraisal;
 
 import java.util.ArrayList;
 import java.util.List;

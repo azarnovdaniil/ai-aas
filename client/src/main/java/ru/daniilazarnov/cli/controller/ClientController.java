@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.daniilazarnov.common.model.Operation;
-import ru.daniilazarnov.common.serialization.json.serializers.OperationSerializer;
+import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.serialization.json.serializers.OperationSerializer;
 
 import java.time.LocalDateTime;
 

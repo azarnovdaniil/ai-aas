@@ -1,6 +1,6 @@
 package ru.daniilazarnov.calc.storage.serialization;
 
-import ru.daniilazarnov.common.model.Event;
+import ru.daniilazarnov.common.model.data.Event;
 
 public interface Serializer {
 
