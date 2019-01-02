@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: client
+
+
+server:
+  port: 8081
+
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: WARN
+      hibernate: WARN
+
+---
