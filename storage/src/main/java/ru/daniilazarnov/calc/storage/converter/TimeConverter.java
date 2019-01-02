@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.storage.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.calc.property.StorageProperties;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +11,7 @@ public class TimeConverter {
 
     private final DateTimeFormatter dateTimeFormatter;
 
-    public TimeConverter(CalcProperties properties) {
+    public TimeConverter(StorageProperties properties) {
         this.dateTimeFormatter = DateTimeFormatter.ofPattern(properties.getDateTimeFormatter());
     }
 

@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.calc.storage.converter.EventConverter;
-import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.calc.property.StorageProperties;
 import ru.daniilazarnov.common.model.Event;
 import ru.daniilazarnov.common.model.UnityLogRow;
 
@@ -23,7 +23,7 @@ public class UnityLogDao implements LogDao {
 
     private static final Logger logger = LoggerFactory.getLogger(UnityLogDao.class);
 
-    public UnityLogDao(CalcProperties properties, EventConverter<UnityLogRow> eventConverter) {
+    public UnityLogDao(StorageProperties properties, EventConverter<UnityLogRow> eventConverter) {
         this.csvDelimiter = properties.getCsvDelimiter();
         this.eventConverter = eventConverter;
     }

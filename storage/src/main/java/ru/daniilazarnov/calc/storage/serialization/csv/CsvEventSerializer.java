@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.storage.serialization.csv;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.calc.property.StorageProperties;
 import ru.daniilazarnov.common.model.Event;
 import ru.daniilazarnov.common.model.State;
 
@@ -14,7 +14,7 @@ public class CsvEventSerializer {
     private final DateTimeFormatter formatter;
     private final String delimiter;
 
-    public CsvEventSerializer(CalcProperties properties) {
+    public CsvEventSerializer(StorageProperties properties) {
         this.formatter = DateTimeFormatter.ofPattern(properties.getDateTimeFormatter());
         this.delimiter = properties.getCsvDelimiter();
     }

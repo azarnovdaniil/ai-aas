@@ -17,17 +17,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class CalcController {
+public class StorageController {
 
     private final MemoryService memoryService;
     private final StorageService storageService;
     private final Serializer serializer;
     private final LogDao logDao;
 
-    private static final Logger logger = LoggerFactory.getLogger(CalcController.class);
+    private static final Logger logger = LoggerFactory.getLogger(StorageController.class);
 
-    public CalcController(MemoryService memoryService, LogDao logDao,
-                          StorageService storageService, Serializer serializer) {
+    public StorageController(MemoryService memoryService, LogDao logDao,
+                             StorageService storageService, Serializer serializer) {
 
         this.memoryService = memoryService;
         this.storageService = storageService;

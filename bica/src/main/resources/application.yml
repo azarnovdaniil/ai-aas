@@ -9,3 +9,6 @@ logging:
       springframework:
         web: WARN
       hibernate: WARN
+
+game-config-location: "/Users/daniilazarnov/config/game_config.json"
+client-url: "http://localhost:8081/teleport"

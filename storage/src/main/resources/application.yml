@@ -20,3 +20,4 @@ csv-delimiter: ","
 
 before-calc-location: "/Users/daniilazarnov/logs/before"
 after-calc-location: "/Users/daniilazarnov/logs/after"
+game-config-location: "/Users/daniilazarnov/config/game_config.json"

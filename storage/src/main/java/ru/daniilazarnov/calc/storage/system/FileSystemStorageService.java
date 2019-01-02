@@ -3,7 +3,7 @@ package ru.daniilazarnov.calc.storage.system;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.calc.property.CalcProperties;
+import ru.daniilazarnov.calc.property.StorageProperties;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,7 +20,7 @@ public class FileSystemStorageService implements StorageService {
 
     private static final Logger logger = LoggerFactory.getLogger(FileSystemStorageService.class);
 
-    public FileSystemStorageService(CalcProperties properties) {
+    public FileSystemStorageService(StorageProperties properties) {
         this.beforeLocation = Paths.get(properties.getBeforeCalcLocation());
         this.afterLocation = Paths.get(properties.getAfterCalcLocation());
     }
