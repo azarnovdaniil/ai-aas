@@ -66,7 +66,7 @@ public class BotMemoryDao implements MemoryDao {
     }
 
     @Override
-    public void initNewSession(String sessionId) {
+    public void initSession(String sessionId) {
         memoryState.put(sessionId, new LinkedHashSet<>());
     }
 

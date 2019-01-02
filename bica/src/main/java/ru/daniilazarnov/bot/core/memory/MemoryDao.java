@@ -18,7 +18,7 @@ public interface MemoryDao {
 
     Set<State> getAppraisalState(String sessionId);
 
-    void initNewSession(String sessionId);
+    void initSession(String sessionId);
 
     void initMemoryForActorInSession(String sessionId, Actor actor);
 

@@ -24,7 +24,7 @@ public class MemoryServiceImpl implements MemoryService {
         Action action = event.getAction();
 
         if (!memoryDao.isInitSession(sessionId)) {
-            memoryDao.initNewSession(sessionId);
+            memoryDao.initSession(sessionId);
             if (!actor.getName().isEmpty()) {
                 memoryDao.initMemoryForActorInSession(sessionId, actor);
             }
