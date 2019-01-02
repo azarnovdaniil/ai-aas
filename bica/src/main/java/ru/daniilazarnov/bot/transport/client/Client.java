@@ -28,8 +28,7 @@ public class Client {
         taskScheduler.scheduleWithFixedDelay(() -> {
             Operation operation = paradigmService.executeOperation();
 
-            //TODO
-            if (operation.getAction() != null) {
+            if (!operation.equals(Operation.none())) {
                 String url = paradigmService.getUrl() + "?sessionId=" + sessionId + "&botName=" + actor.getName();
 
                 restTemplate.postForObject(url, operation, Operation.class);

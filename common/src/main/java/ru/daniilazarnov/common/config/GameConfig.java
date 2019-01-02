@@ -11,8 +11,6 @@ import java.util.List;
 @JsonDeserialize(using = GameConfigDeserializer.class)
 public class GameConfig {
 
-    private static final Appraisal DEFAULT_INITIAL_APPRAISAL = Appraisal.valueOf(0.0, 0.0);
-
     private final Appraisal initialAppraisal;
     private final List<Action> actions;
     private final List<String> systemActions;
@@ -41,7 +39,7 @@ public class GameConfig {
 
     public static class Builder {
 
-        private Appraisal initialAppraisal = DEFAULT_INITIAL_APPRAISAL;
+        private Appraisal initialAppraisal = Appraisal.zero();
         private List<Action> actions = new ArrayList<>();
         private List<String> systemActions = new ArrayList<>();
 

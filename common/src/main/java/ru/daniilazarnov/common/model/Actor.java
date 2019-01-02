@@ -11,6 +11,8 @@ import java.util.Objects;
 @JsonDeserialize(using = ActorDeserializer.class)
 public class Actor {
 
+    private static final Actor NONE = new Actor("none");
+
     private final String name;
 
     private Actor(String name) {
@@ -23,6 +25,10 @@ public class Actor {
 
     public static Actor valueOf(String name) {
         return new Actor(name);
+    }
+
+    public static Actor none() {
+        return NONE;
     }
 
     @Override
@@ -40,4 +46,10 @@ public class Actor {
         return name != null ? name.hashCode() : 0;
     }
 
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

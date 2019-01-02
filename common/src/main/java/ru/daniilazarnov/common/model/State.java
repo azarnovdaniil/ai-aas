@@ -45,16 +45,13 @@ public class State {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         State state = (State) o;
-
-        return Objects.equals(actor, state.actor) && Objects.equals(target, state.target);
+        return Objects.equals(actor, state.actor) &&
+                Objects.equals(target, state.target);
     }
 
     @Override
     public int hashCode() {
-        int result = actor.hashCode();
-        result = 31 * result + target.hashCode();
-        return result;
+        return Objects.hash(actor, target);
     }
 }

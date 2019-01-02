@@ -30,6 +30,10 @@ public class EmotionalActionServiceImpl implements EmotionalActionService {
     public Operation chooseOperation(String sessionId, Actor actor) {
         List<Operation> operations = new ArrayList<>(rationalService.getOperations(sessionId, actor));
 
+        if (operations.isEmpty() || !memoryDao.isInitSession(sessionId)) {
+            return Operation.none();
+        }
+
         Map<Operation, Double> operationAndValue = new HashMap<>();
 
         double sumLikelyHood = 0.0;
@@ -37,15 +41,14 @@ public class EmotionalActionServiceImpl implements EmotionalActionService {
         Map<Actor, State> actorState = new HashMap<>();
         Map<Actor, State> targetState = new HashMap<>();
 
-        memoryDao.getAppraisalState(sessionId).forEach(state -> {
+        for (State state : memoryDao.getAppraisalState(sessionId)) {
             if (state.getActor().equals(actor)) {
                 actorState.put(state.getTarget(), state);
             }
             if (state.getTarget().equals(actor)) {
                 targetState.put(state.getActor(), state);
-
             }
-        });
+        }
 
         for (Operation operation : operations) {
             Appraisal actorAppraisal = actorState.get(operation.getTarget()).getAppraisal();
@@ -62,7 +65,6 @@ public class EmotionalActionServiceImpl implements EmotionalActionService {
         double predValue = 0.0;
 
         Operation resultOperation = operations.get(0);
-
         for (Map.Entry<Operation, Double> entry : operationAndValue.entrySet()) {
 
             if (randomValue < predValue + entry.getValue()) {

@@ -23,7 +23,7 @@ public class ActionDeserializer extends JsonDeserializer<Action> {
         return Action.builder()
                 .setAppraisal(appraisal)
                 .setActionName(name)
-                .setActionType(ActionType.of(type))
+                .setActionType(ActionType.valueOf(type))
                 .build();
     }
 }

@@ -9,6 +9,8 @@ import ru.daniilazarnov.common.serialization.json.serializers.ActionSerializer;
 @JsonDeserialize(using = ActionDeserializer.class)
 public class Action {
 
+    private static final Action NONE = new Action("none", Appraisal.zero(), ActionType.NONE);
+
     private final String actionName;
     private final Appraisal appraisal;
     private final ActionType actionType;
@@ -29,6 +31,10 @@ public class Action {
 
     public ActionType getActionType() {
         return actionType;
+    }
+
+    public static Action none() {
+        return NONE;
     }
 
     public static Builder builder() {
@@ -66,4 +72,12 @@ public class Action {
 
     }
 
+    @Override
+    public String toString() {
+        return "Action{" +
+                "actionName='" + actionName + '\'' +
+                ", appraisal=" + appraisal +
+                ", actionType=" + actionType +
+                '}';
+    }
 }

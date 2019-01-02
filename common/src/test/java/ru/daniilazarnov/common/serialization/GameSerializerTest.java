@@ -16,7 +16,7 @@ class GameSerializerTest {
 
     @Test
     void name() throws IOException {
-        Appraisal appraisal = Appraisal.valueOf(0.0, 0.0);
+        Appraisal appraisal = Appraisal.zero();
 
         Action action = Action.builder()
                 .setActionName("Kick")

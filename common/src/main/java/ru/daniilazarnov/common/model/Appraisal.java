@@ -12,18 +12,24 @@ import java.util.Objects;
 @JsonDeserialize(using = AppraisalDeserializer.class)
 public class Appraisal {
 
+    private static final Appraisal ZERO = new Appraisal(Complex.valueOf(0.0, 0.0));
+
     private final Complex value;
 
     private Appraisal(Complex value) {
         this.value = value;
     }
 
-    public static Appraisal valueOf(Complex value){
+    public static Appraisal valueOf(Complex value) {
         return new Appraisal(value);
     }
 
-    public static Appraisal valueOf(double valence, double dominance){
+    public static Appraisal valueOf(double valence, double dominance) {
         return new Appraisal(Complex.valueOf(valence, dominance));
+    }
+
+    public static Appraisal zero() {
+        return ZERO;
     }
 
     public Complex getValue() {

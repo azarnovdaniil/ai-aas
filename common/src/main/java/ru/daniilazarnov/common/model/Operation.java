@@ -11,6 +11,8 @@ import java.util.Objects;
 @JsonDeserialize(using = OperationDeserializer.class)
 public class Operation {
 
+    private static final Operation NONE = new Operation(Action.none(), Actor.none());
+
     private final Action action;
     private final Actor target;
 
@@ -31,6 +33,10 @@ public class Operation {
         return new Operation(action, target);
     }
 
+    public static Operation none() {
+        return NONE;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,5 +49,13 @@ public class Operation {
     @Override
     public int hashCode() {
         return Objects.hash(action, target);
+    }
+
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "action=" + action +
+                ", target=" + target +
+                '}';
     }
 }

@@ -31,7 +31,7 @@ public class OperationServiceImpl implements OperationService {
         taskScheduler.scheduleWithFixedDelay(() -> {
             Operation operation = emotionalActionService.chooseOperation(sessionId, actor);
             operations.push(operation);
-            logger.info("Choose new operation");
+            logger.info("Chosen new operation " + operation + " for " + actor + " into " + sessionId);
         }, Duration.ofSeconds(1));
     }
 
@@ -40,7 +40,7 @@ public class OperationServiceImpl implements OperationService {
         if (!operations.isEmpty()) {
             return operations.pop();
         } else {
-            return Operation.of(null, null);
+            return Operation.none();
         }
     }
 }

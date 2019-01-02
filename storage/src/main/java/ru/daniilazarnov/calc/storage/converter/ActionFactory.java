@@ -17,8 +17,6 @@ public class ActionFactory {
     private final Map<String, Action> actions = new HashMap<>();
     private final Set<String> systemActions = new HashSet<>();
 
-    private static final Appraisal ZERO_APPRAISAL = Appraisal.valueOf(0.0, 0.0);
-
     public ActionFactory(GameConfig gameConfig) {
         gameConfig.getActions().forEach(action -> actions.put(action.getActionName().trim().toUpperCase(), action));
         gameConfig.getSystemActions().forEach(s -> systemActions.add(s.trim().toUpperCase()));
@@ -30,7 +28,7 @@ public class ActionFactory {
         if (systemActions.stream().anyMatch(aName::startsWith)) {
             return Action.builder()
                     .setActionName(actionName)
-                    .setAppraisal(ZERO_APPRAISAL)
+                    .setAppraisal(Appraisal.zero())
                     .setActionType(ActionType.SYSTEM)
                     .build();
         }
