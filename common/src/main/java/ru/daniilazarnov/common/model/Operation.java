@@ -31,34 +31,6 @@ public class Operation {
         return new Operation(action, target);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    public static class Builder {
-
-        private Action action;
-        private Actor target;
-
-        private Builder() {
-            // private constructor
-        }
-
-        public Builder setAction(Action action) {
-            this.action = action;
-            return this;
-        }
-
-        public Builder setTarget(Actor target) {
-            this.target = target;
-            return this;
-        }
-
-        public Operation build() {
-            return new Operation(action, target);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

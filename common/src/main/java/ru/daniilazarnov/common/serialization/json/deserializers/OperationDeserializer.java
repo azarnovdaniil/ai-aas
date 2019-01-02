@@ -19,9 +19,6 @@ public class OperationDeserializer extends JsonDeserializer<Operation> {
         Actor target = node.get("target").traverse(jp.getCodec()).readValueAs(Actor.class);
         Action action = node.get("action").traverse(jp.getCodec()).readValueAs(Action.class);
 
-        return Operation.builder()
-                .setAction(action)
-                .setTarget(target)
-                .build();
+        return Operation.of(action, target);
     }
 }

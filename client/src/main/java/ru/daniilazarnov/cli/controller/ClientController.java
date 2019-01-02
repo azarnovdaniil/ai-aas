@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.common.model.Operation;
 import ru.daniilazarnov.common.serialization.json.serializers.OperationSerializer;
@@ -23,8 +24,14 @@ public class ClientController {
         mapper.registerModule(module);
     }
 
-    @PostMapping("/teleport")
-    public void teleportController(@RequestBody Operation operation) throws JsonProcessingException {
+    @PostMapping(value = "/teleport", params = {"sessionId", "botName"})
+    public void teleportController(@RequestBody Operation operation,
+                                   @RequestParam("sessionId") String sessionId,
+                                   @RequestParam("botName") String botName) throws JsonProcessingException {
+
+        System.out.println(botName);
+        System.out.println(sessionId);
+
         System.out.println(mapper.writeValueAsString(operation) + " " + LocalDateTime.now());
     }
 }

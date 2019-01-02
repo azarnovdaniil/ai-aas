@@ -68,4 +68,12 @@ public class TeleportService implements ParadigmService {
         return sessions.containsKey(sessionId);
     }
 
+    @Override
+    public void addBot(String sessionId, Actor actor) {
+        addOperations(sessionId, actor);
+        botCore.addOperations(sessionId, allOperations.get(sessionId));
+
+        botCore.addScheduler(sessionId, actor);
+    }
+
 }

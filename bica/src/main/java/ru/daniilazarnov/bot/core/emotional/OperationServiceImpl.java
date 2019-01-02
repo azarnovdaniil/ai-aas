@@ -9,16 +9,13 @@ import ru.daniilazarnov.common.model.Actor;
 import ru.daniilazarnov.common.model.Operation;
 
 import java.time.Duration;
-import java.util.Map;
 import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 @Service
 public class OperationServiceImpl implements OperationService {
 
     private final EmotionalActionService emotionalActionService;
-    private final Map<Actor, TaskScheduler> schedulerMap = new ConcurrentHashMap<>();
     private final BlockingDeque<Operation> operations = new LinkedBlockingDeque<>();
 
     private static final Logger logger = LoggerFactory.getLogger(OperationServiceImpl.class);
@@ -36,8 +33,6 @@ public class OperationServiceImpl implements OperationService {
             operations.push(operation);
             logger.info("Choose new operation");
         }, Duration.ofSeconds(1));
-
-        schedulerMap.put(actor, taskScheduler);
     }
 
     @Override
@@ -45,7 +40,7 @@ public class OperationServiceImpl implements OperationService {
         if (!operations.isEmpty()) {
             return operations.pop();
         } else {
-            return Operation.builder().build();
+            return Operation.of(null, null);
         }
     }
 }

@@ -11,4 +11,4 @@ logging:
       hibernate: WARN
 
 game-config-location: "/Users/daniilazarnov/config/game_config.json"
-client-url: "http://localhost:8081/teleport"
+client-url: "http://localhost:8081/teleport/"
