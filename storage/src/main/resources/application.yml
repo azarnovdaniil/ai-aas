@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: calculator
+
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: WARN
+      hibernate: WARN
+
+---
+
+spring:
+  profiles: calculator
+
+date-time-formatter: "M/dd/yyyy HH:mm:ss:[SSS][SS][S]"
+csv-delimiter: ","
+
+before-calc-location: "/Users/daniilazarnov/logs/before"
+after-calc-location: "/Users/daniilazarnov/logs/after"

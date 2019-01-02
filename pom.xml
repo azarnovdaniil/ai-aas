@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.daniilazarnov</groupId>
-    <artifactId>spring-all</artifactId>
+    <artifactId>ai-aas</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>spring-all</name>
+    <name>ai-aas</name>
 
     <developers>
         <developer>
@@ -18,11 +18,11 @@
     </developers>
 
     <modules>
-        <module>bica-bot</module>
-        <module>bica-web</module>
-        <module>bica-calc</module>
-        <module>bica-cli</module>
-        <module>bica-common</module>
+        <module>bica</module>
+        <module>web</module>
+        <module>storage</module>
+        <module>client</module>
+        <module>common</module>
     </modules>
 
     <properties>
