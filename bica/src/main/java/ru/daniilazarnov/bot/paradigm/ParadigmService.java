@@ -11,6 +11,8 @@ public interface ParadigmService {
 
     String getUrl();
 
-    boolean addSession(String sessionId);
+    void addSession(String sessionId);
+
+    boolean isInitSession(String sessionId);
 
 }

@@ -20,7 +20,9 @@ public class Controller {
 
     @PostMapping("/teleport")
     public void teleportController(@RequestBody Event event) {
-        if (paradigmService.addSession(event.getSessionId())) {
+        String sessionId = event.getSessionId();
+        if (!paradigmService.isInitSession(sessionId)) {
+            paradigmService.addSession(sessionId);
             client.initExecutor();
         }
 

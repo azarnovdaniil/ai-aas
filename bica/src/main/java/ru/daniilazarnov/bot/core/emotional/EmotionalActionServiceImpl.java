@@ -8,10 +8,7 @@ import ru.daniilazarnov.common.model.Appraisal;
 import ru.daniilazarnov.common.model.Operation;
 import ru.daniilazarnov.common.model.State;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static ru.daniilazarnov.common.functions.AppraisalFunctions.likelyHoodFunc;
 
@@ -31,7 +28,7 @@ public class EmotionalActionServiceImpl implements EmotionalActionService {
 
     @Override
     public Operation chooseOperation(String sessionId, Actor actor) {
-        List<Operation> operations = rationalService.getOperations(sessionId, actor);
+        List<Operation> operations = new ArrayList<>(rationalService.getOperations(sessionId, actor));
 
         Map<Operation, Double> operationAndValue = new HashMap<>();
 

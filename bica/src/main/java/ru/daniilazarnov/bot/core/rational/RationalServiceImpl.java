@@ -4,22 +4,31 @@ import org.springframework.stereotype.Service;
 import ru.daniilazarnov.common.model.Actor;
 import ru.daniilazarnov.common.model.Operation;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RationalServiceImpl implements RationalService {
 
-    private final List<Operation> operations = new ArrayList<>();
+    private final Map<String, Set<Operation>> allOperations = new HashMap<>();
 
     @Override
-    public List<Operation> getOperations(String sessionId, Actor actor) {
-        return operations;
+    public Set<Operation> getOperations(String sessionId, Actor actor) {
+        return allOperations.get(sessionId)
+                .stream()
+                .filter(o -> !o.getTarget().equals(actor))
+                .collect(Collectors.toSet());
     }
 
     @Override
-    public void addOperation(String sessionId, Actor actor, Operation operation) {
-        operations.add(operation);
+    public void addOperations(String sessionId, Set<Operation> operations) {
+        if (allOperations.containsKey(sessionId)) {
+            allOperations.get(sessionId).addAll(operations);
+        } else {
+            allOperations.put(sessionId, operations);
+        }
     }
 
 }
