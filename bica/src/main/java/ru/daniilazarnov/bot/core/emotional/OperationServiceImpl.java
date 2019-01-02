@@ -35,7 +35,7 @@ public class OperationServiceImpl implements OperationService {
             Operation operation = emotionalActionService.chooseOperation(sessionId, actor);
             operations.push(operation);
             logger.info("Choose new operation");
-        }, Duration.ofMillis(10));
+        }, Duration.ofSeconds(1));
 
         schedulerMap.put(actor, taskScheduler);
     }

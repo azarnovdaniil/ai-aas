@@ -21,7 +21,7 @@ public class BotServiceImpl implements BotCore {
     }
 
     @Override
-    public Event actionHandle(Event event) {
+    public void actionHandle(Event event) {
         Operation operation = Operation.builder()
                 .setAction(event.getAction())
                 .setTarget(event.getTarget())
@@ -29,9 +29,8 @@ public class BotServiceImpl implements BotCore {
 
         rationalService.addOperation(event.getSessionId(), event.getActor(), operation);
 
+        botService.updateMemory(event);
         operationService.addScheduler(event.getSessionId(), event.getActor());
-
-        return botService.updateMemory(event);
     }
 
     @Override

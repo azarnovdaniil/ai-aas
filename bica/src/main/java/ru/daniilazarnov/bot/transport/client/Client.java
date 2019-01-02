@@ -18,16 +18,15 @@ public class Client {
 
     public Client(ParadigmService paradigmService) {
         this.paradigmService = paradigmService;
-        initExecutor();
     }
 
-    private void initExecutor() {
+    public void initExecutor() {
         taskScheduler.scheduleWithFixedDelay(() -> {
             Operation operation = paradigmService.executeOperation();
             String url = paradigmService.getUrl();
 
             restTemplate.postForObject(url, operation, Operation.class);
-        }, Duration.ofMillis(20));
+        }, Duration.ofSeconds(2));
     }
 
 }

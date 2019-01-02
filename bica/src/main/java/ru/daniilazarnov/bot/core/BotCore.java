@@ -5,7 +5,7 @@ import ru.daniilazarnov.common.model.Operation;
 
 public interface BotCore {
 
-    Event actionHandle(Event event);
+    void actionHandle(Event event);
 
     Operation executeOperation();
 

@@ -5,10 +5,12 @@ import ru.daniilazarnov.common.model.Operation;
 
 public interface ParadigmService {
 
-    Event eventHandle(Event eventTO);
+    void eventHandle(Event eventTO);
 
     Operation executeOperation();
 
     String getUrl();
+
+    boolean addSession(String sessionId);
 
 }

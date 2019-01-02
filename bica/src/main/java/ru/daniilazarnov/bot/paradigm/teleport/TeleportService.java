@@ -9,7 +9,9 @@ import ru.daniilazarnov.common.model.Action;
 import ru.daniilazarnov.common.model.Event;
 import ru.daniilazarnov.common.model.Operation;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TeleportService implements ParadigmService {
@@ -18,6 +20,7 @@ public class TeleportService implements ParadigmService {
     private final BotProperties properties;
     private final List<Action> actions;
     private final List<String> systemActions;
+    private final Set<String> sessions = new HashSet<>();
 
     public TeleportService(BotCore botCore, BotProperties properties, GameConfig gameConfig) {
         this.botCore = botCore;
@@ -27,8 +30,8 @@ public class TeleportService implements ParadigmService {
     }
 
     @Override
-    public Event eventHandle(Event event) {
-        return botCore.actionHandle(event);
+    public void eventHandle(Event event) {
+        botCore.actionHandle(event);
     }
 
     @Override
@@ -39,6 +42,11 @@ public class TeleportService implements ParadigmService {
     @Override
     public String getUrl() {
         return properties.getClientUrl();
+    }
+
+    @Override
+    public boolean addSession(String sessionId) {
+        return sessions.add(sessionId);
     }
 
 }
