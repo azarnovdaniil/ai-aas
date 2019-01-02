@@ -58,7 +58,7 @@ public class TeleportService implements ParadigmService {
     }
 
     @Override
-    public void addSession(String sessionId) {
+    public void initSession(String sessionId) {
         sessions.put(sessionId, new HashSet<>());
         allOperations.put(sessionId, new HashSet<>());
     }

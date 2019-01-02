@@ -24,7 +24,7 @@ public class Controller {
     public void teleportController(@RequestBody Event event) {
         String sessionId = event.getSessionId();
         if (!paradigmService.isInitSession(sessionId)) {
-            paradigmService.addSession(sessionId);
+            paradigmService.initSession(sessionId);
         }
 
         paradigmService.eventHandle(event);
@@ -33,7 +33,9 @@ public class Controller {
     @PostMapping(value = "/teleport/init", params = {"sessionId", "botName"})
     public void teleportInitController(@RequestParam("sessionId") String sessionId, @RequestParam("botName") String botName) {
         if (!paradigmService.isInitSession(sessionId)) {
-            paradigmService.addSession(sessionId);
+            paradigmService.initSession(sessionId);
+            client.initBot(sessionId, Actor.valueOf(botName));
+        } else {
             client.initBot(sessionId, Actor.valueOf(botName));
         }
     }

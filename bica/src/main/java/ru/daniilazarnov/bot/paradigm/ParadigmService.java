@@ -12,7 +12,7 @@ public interface ParadigmService {
 
     String getUrl();
 
-    void addSession(String sessionId);
+    void initSession(String sessionId);
 
     boolean isInitSession(String sessionId);
 
