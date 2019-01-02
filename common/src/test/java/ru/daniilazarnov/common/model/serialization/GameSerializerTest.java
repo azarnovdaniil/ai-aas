@@ -30,18 +30,16 @@ class GameSerializerTest {
         Event event1 = Event.newBuilder()
                 .setSessionId("123")
                 .setLocalDateTime(LocalDateTime.of(2000, 10, 10, 10, 10))
-                .setTarget(target)
                 .setActor(actor)
-                .setAction(action)
+                .setOperation(Operation.of(action, target))
                 .setMultiValues("X", 0.0)
                 .build();
 
         Event event2 = Event.newBuilder()
                 .setSessionId("123")
                 .setLocalDateTime(LocalDateTime.of(2000, 10, 10, 10, 10))
-                .setTarget(target)
                 .setActor(actor)
-                .setAction(action)
+                .setOperation(Operation.of(action, target))
                 .setMultiValues("X", 0.0)
                 .build();
 

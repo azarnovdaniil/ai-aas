@@ -34,7 +34,7 @@ public class TeleportService implements ParadigmService {
         String sessionId = event.getSessionId();
 
         addOperations(sessionId, event.getActor());
-        addOperations(sessionId, event.getTarget());
+        addOperations(sessionId, event.getOperation().getTarget());
         botCore.addOperations(sessionId, allOperations.get(sessionId));
 
         return botCore.actionHandle(event);

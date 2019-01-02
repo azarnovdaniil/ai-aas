@@ -24,8 +24,8 @@ public class CsvEventSerializer {
         joiner.add(event.getLocalDateTime().format(formatter))
                 .add(event.getSessionId())
                 .add(event.getActor().getName())
-                .add(event.getAction().getActionName())
-                .add(event.getTarget().getName());
+                .add(event.getOperation().getAction().getActionName())
+                .add(event.getOperation().getTarget().getName());
 
         for (Number value : event.getMultiValues().values()) {
             joiner.add(String.valueOf(value));

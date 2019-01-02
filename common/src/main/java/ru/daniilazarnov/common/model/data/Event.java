@@ -17,9 +17,8 @@ public class Event {
 
     private LocalDateTime localDateTime;
     private String sessionId;
-    private Action action;
-    private Actor target;
     private Actor actor;
+    private Operation operation;
     private Map<String, Number> multiValues = new LinkedHashMap<>();
     private Set<State> appraisalStateSet = new LinkedHashSet<>();
 
@@ -34,12 +33,8 @@ public class Event {
         return sessionId;
     }
 
-    public Action getAction() {
-        return action;
-    }
-
-    public Actor getTarget() {
-        return target;
+    public Operation getOperation() {
+        return operation;
     }
 
     public Actor getActor() {
@@ -74,8 +69,8 @@ public class Event {
             return this;
         }
 
-        public Builder setAction(Action action) {
-            Event.this.action = action;
+        public Builder setOperation(Operation operation) {
+            Event.this.operation = operation;
             return this;
         }
 
@@ -84,13 +79,13 @@ public class Event {
             return this;
         }
 
-        public Builder setTarget(Actor target) {
-            Event.this.target = target;
+        public Builder setMultiValues(String key, Number value) {
+            Event.this.multiValues.put(key, value);
             return this;
         }
 
-        public Builder setMultiValues(String key, Number value) {
-            Event.this.multiValues.put(key, value);
+        public Builder setMultiValues(Map<String, Number> multiValues) {
+            Event.this.multiValues.putAll(multiValues);
             return this;
         }
 

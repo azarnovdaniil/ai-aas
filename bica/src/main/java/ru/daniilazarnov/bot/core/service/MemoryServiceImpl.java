@@ -20,8 +20,8 @@ public class MemoryServiceImpl implements MemoryService {
 
         String sessionId = event.getSessionId();
         Actor actor = event.getActor();
-        Actor target = event.getTarget();
-        Action action = event.getAction();
+        Actor target = event.getOperation().getTarget();
+        Action action = event.getOperation().getAction();
 
         if (!memoryDao.isInitSession(sessionId)) {
             memoryDao.initSession(sessionId);
@@ -40,7 +40,7 @@ public class MemoryServiceImpl implements MemoryService {
             memoryDao.initMemoryForActorInSession(sessionId, target);
         }
 
-        switch (event.getAction().getActionType()) {
+        switch (event.getOperation().getAction().getActionType()) {
             case NORMAL:
                 memoryDao.updateAppraisal(sessionId, actor, target, action);
                 break;
