@@ -3,6 +3,8 @@ package ru.daniilazarnov.cli.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.common.model.data.Operation;
 import ru.daniilazarnov.common.model.serialization.json.serializers.OperationSerializer;
 
-import java.time.LocalDateTime;
-
 @RestController
 public class ClientController {
 
     private final ObjectMapper mapper = new ObjectMapper();
+
+    private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
 
     public ClientController() {
         SimpleModule module = new SimpleModule();
@@ -29,9 +31,6 @@ public class ClientController {
                                    @RequestParam("sessionId") String sessionId,
                                    @RequestParam("botName") String botName) throws JsonProcessingException {
 
-        System.out.println(botName);
-        System.out.println(sessionId);
-
-        System.out.println(mapper.writeValueAsString(operation) + " " + LocalDateTime.now());
+        logger.info(sessionId + " " + botName + " " + mapper.writeValueAsString(operation));
     }
 }

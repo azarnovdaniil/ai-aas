@@ -6,6 +6,4 @@ public interface Serializer {
 
     String toCSV(Event event);
 
-    String toJSON(Object object);
-
 }
