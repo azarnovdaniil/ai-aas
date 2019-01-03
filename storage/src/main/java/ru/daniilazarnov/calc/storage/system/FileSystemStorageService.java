@@ -21,8 +21,8 @@ public class FileSystemStorageService implements StorageService {
     private static final Logger logger = LoggerFactory.getLogger(FileSystemStorageService.class);
 
     public FileSystemStorageService(StorageProperties properties) {
-        this.beforeLocation = Paths.get(properties.getBeforeCalcLocation());
-        this.afterLocation = Paths.get(properties.getAfterCalcLocation());
+        this.beforeLocation = Paths.get(properties.getBeforeLocation());
+        this.afterLocation = Paths.get(properties.getAfterLocation());
     }
 
     @Override
@@ -30,6 +30,7 @@ public class FileSystemStorageService implements StorageService {
         try {
             return Files.walk(beforeLocation, 2)
                     .filter(path -> !path.equals(beforeLocation))
+                    .filter(path -> path.toString().endsWith(".csv"))
                     .filter(path -> Files.isRegularFile(path));
         } catch (IOException e) {
             logger.error(e.getMessage());
@@ -46,19 +47,6 @@ public class FileSystemStorageService implements StorageService {
         }
 
         Files.write(directory.resolve(path.getFileName()), events);
-    }
-
-    @Override
-    public void writeJson(Path path, String game) {
-        Path directory = afterLocation.resolve(path.getParent().getFileName());
-        try {
-            if (!Files.exists(directory)) {
-                Files.createDirectory(directory);
-            }
-            Files.write(directory.resolve(path.getFileName().toString().replace(".csv", ".json")), List.of(game));
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
     }
 
 }

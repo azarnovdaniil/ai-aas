@@ -1,63 +1,29 @@
 package ru.daniilazarnov.calc.property;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import ru.daniilazarnov.common.config.GameConfig;
+import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.IOException;
-
-@Configuration
-@ConfigurationProperties()
+@Component
+@ConfigurationProperties(prefix = "storage")
 public class StorageProperties {
 
-    private String gameConfigLocation;
-    private String beforeCalcLocation;
-    private String afterCalcLocation;
-    private String csvDelimiter;
-    private String dateTimeFormatter;
+    private String beforeLocation;
+    private String afterLocation;
 
-    public String getBeforeCalcLocation() {
-        return beforeCalcLocation;
+    public String getBeforeLocation() {
+        return beforeLocation;
     }
 
-    public void setBeforeCalcLocation(String beforeCalcLocation) {
-        this.beforeCalcLocation = beforeCalcLocation;
+    public void setBeforeLocation(String beforeLocation) {
+        this.beforeLocation = beforeLocation;
     }
 
-    public String getAfterCalcLocation() {
-        return afterCalcLocation;
+    public String getAfterLocation() {
+        return afterLocation;
     }
 
-    public void setAfterCalcLocation(String afterCalcLocation) {
-        this.afterCalcLocation = afterCalcLocation;
-    }
-
-    public String getCsvDelimiter() {
-        return csvDelimiter;
-    }
-
-    public void setCsvDelimiter(String csvDelimiter) {
-        this.csvDelimiter = csvDelimiter;
-    }
-
-    public String getDateTimeFormatter() {
-        return dateTimeFormatter;
-    }
-
-    public void setDateTimeFormatter(String dateTimeFormatter) {
-        this.dateTimeFormatter = dateTimeFormatter;
-    }
-
-    public void setGameConfigLocation(String gameConfigLocation) {
-        this.gameConfigLocation = gameConfigLocation;
-    }
-
-    @Bean
-    public GameConfig gameConfig() throws IOException {
-        return new ObjectMapper().readValue(new File(gameConfigLocation), GameConfig.class);
+    public void setAfterLocation(String afterLocation) {
+        this.afterLocation = afterLocation;
     }
 
 }

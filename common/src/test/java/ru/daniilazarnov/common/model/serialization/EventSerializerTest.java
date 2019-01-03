@@ -10,6 +10,7 @@ import ru.daniilazarnov.common.model.serialization.json.serializers.ActorSeriali
 import ru.daniilazarnov.common.model.serialization.json.serializers.AppraisalSerializer;
 import ru.daniilazarnov.common.model.serialization.json.serializers.EventSerializer;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +33,7 @@ class EventSerializerTest {
 
         Event event = Event.newBuilder()
                 .setSessionId("123")
-                .setLocalDateTime(LocalDateTime.of(2000, 10, 10, 10, 10))
+                .setZonedDateTime(Instant.EPOCH)
                 .setActor(actor)
                 .setOperation(Operation.of(action, target))
                 .setMultiValues("X", 0.0)

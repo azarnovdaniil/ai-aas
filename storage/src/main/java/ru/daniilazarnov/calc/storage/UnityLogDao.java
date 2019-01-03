@@ -3,8 +3,8 @@ package ru.daniilazarnov.calc.storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import ru.daniilazarnov.calc.property.ParserProperties;
 import ru.daniilazarnov.calc.storage.converter.EventConverter;
-import ru.daniilazarnov.calc.property.StorageProperties;
 import ru.daniilazarnov.common.model.data.Event;
 import ru.daniilazarnov.common.model.data.UnityLogRow;
 
@@ -23,13 +23,16 @@ public class UnityLogDao implements LogDao {
 
     private static final Logger logger = LoggerFactory.getLogger(UnityLogDao.class);
 
-    public UnityLogDao(StorageProperties properties, EventConverter<UnityLogRow> eventConverter) {
-        this.csvDelimiter = properties.getCsvDelimiter();
+    public UnityLogDao(ParserProperties properties, EventConverter<UnityLogRow> eventConverter) {
+        this.csvDelimiter = properties.getDelimiter();
         this.eventConverter = eventConverter;
     }
 
     @Override
     public List<Event> getListEvent(Path path) {
+
+        logger.info("Read path " + path);
+
         try (Stream<String> lines = Files.lines(path)) {
             return lines
                     .map(line -> line.split(csvDelimiter))

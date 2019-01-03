@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface BotCore {
 
-    Event actionHandle(Event event);
+    Event eventHandler(Event event);
 
     void addOperations(String sessionId, Set<Operation> operations);
 

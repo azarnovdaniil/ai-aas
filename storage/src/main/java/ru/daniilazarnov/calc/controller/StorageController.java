@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.daniilazarnov.bot.core.service.MemoryService;
+import org.springframework.web.client.RestTemplate;
+import ru.daniilazarnov.calc.property.ParserProperties;
 import ru.daniilazarnov.calc.storage.LogDao;
 import ru.daniilazarnov.calc.storage.serialization.Serializer;
 import ru.daniilazarnov.calc.storage.system.StorageService;
 import ru.daniilazarnov.common.model.data.Event;
-import ru.daniilazarnov.common.model.data.Game;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -21,17 +21,18 @@ import java.util.stream.Collectors;
 @RestController
 public class StorageController {
 
-    private final MemoryService memoryService;
+    private final ParserProperties parserProperties;
     private final StorageService storageService;
     private final Serializer serializer;
     private final LogDao logDao;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     private static final Logger logger = LoggerFactory.getLogger(StorageController.class);
 
-    public StorageController(MemoryService memoryService, LogDao logDao,
+    public StorageController(ParserProperties parserProperties, LogDao logDao,
                              StorageService storageService, Serializer serializer) {
 
-        this.memoryService = memoryService;
+        this.parserProperties = parserProperties;
         this.storageService = storageService;
         this.logDao = logDao;
         this.serializer = serializer;
@@ -44,12 +45,13 @@ public class StorageController {
 
     @RequestMapping("/calculate")
     public void csvController() {
+        logger.info("Call calculate");
 
         storageService.loadAll().forEach(path -> {
             List<String> collect = logDao.getListEvent(path)
                     .stream()
-                    .sorted(Comparator.comparing(Event::getLocalDateTime))
-                    .peek(memoryService::updateMemory)
+                    .sorted(Comparator.comparing(Event::getZonedDateTime))
+                    .peek(this::client)
                     .map(serializer::toCSV)
                     .collect(Collectors.toList());
 
@@ -61,19 +63,9 @@ public class StorageController {
         });
     }
 
-    @RequestMapping("/json")
-    public void jsonController() {
-
-        storageService.loadAll().forEach(path -> {
-            List<Event> events = logDao.getListEvent(path)
-                    .stream()
-                    .sorted(Comparator.comparing(Event::getLocalDateTime))
-                    .peek(memoryService::updateMemory)
-                    .collect(Collectors.toList());
-
-            storageService.writeJson(path, serializer.toJSON(Game.of(events)));
-        });
-
+    private Event client(Event event) {
+        String url = parserProperties.getBotUrl();
+        return restTemplate.postForObject(url, event, Event.class);
     }
 
 }

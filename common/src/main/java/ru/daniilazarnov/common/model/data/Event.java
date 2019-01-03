@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ru.daniilazarnov.common.model.serialization.json.deserializers.EventDeserializer;
 import ru.daniilazarnov.common.model.serialization.json.serializers.EventSerializer;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -15,15 +17,15 @@ import java.util.Set;
 @JsonDeserialize(using = EventDeserializer.class)
 public class Event {
 
-    private LocalDateTime localDateTime;
+    private ZonedDateTime zonedDateTime;
     private String sessionId;
     private Actor actor;
     private Operation operation;
     private Map<String, Number> multiValues = new LinkedHashMap<>();
     private Set<State> appraisalStateSet = new LinkedHashSet<>();
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public ZonedDateTime getZonedDateTime() {
+        return zonedDateTime;
     }
 
     private Event() {
@@ -59,8 +61,8 @@ public class Event {
             // private constructor
         }
 
-        public Builder setLocalDateTime(LocalDateTime localDateTime) {
-            Event.this.localDateTime = localDateTime;
+        public Builder setZonedDateTime(Instant instant) {
+            Event.this.zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
             return this;
         }
 

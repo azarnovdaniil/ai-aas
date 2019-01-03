@@ -11,6 +11,4 @@ public interface StorageService {
 
     void writeCsv(Path path, List<String> events) throws IOException;
 
-    void writeJson(Path path, String game);
-
 }

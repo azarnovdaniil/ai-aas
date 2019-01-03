@@ -11,16 +11,13 @@ import ru.daniilazarnov.common.model.data.Operation;
 import ru.daniilazarnov.common.model.data.State;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class EventDeserializer extends JsonDeserializer<Event> {
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy HH:mm:ss:[SSS][SS][S]");
 
     private static final TypeReference<LinkedHashSet<State>> statesTypeRef = new TypeReference<>() {
     };
@@ -32,7 +29,7 @@ public class EventDeserializer extends JsonDeserializer<Event> {
     public Event deserialize(JsonParser jp, DeserializationContext ctx) throws IOException {
         JsonNode node = jp.getCodec().readTree(jp);
 
-        String timestamp = node.get("timestamp").asText();
+        long timestamp = node.get("timestamp").asLong();
         String sessionId = node.get("sessionId").asText();
         Actor actor = node.get("actor").traverse(jp.getCodec()).readValueAs(Actor.class);
         Operation operation = node.get("operation").traverse(jp.getCodec()).readValueAs(Operation.class);
@@ -50,7 +47,7 @@ public class EventDeserializer extends JsonDeserializer<Event> {
         }
 
         return Event.newBuilder()
-                .setLocalDateTime(LocalDateTime.parse(timestamp, formatter))
+                .setZonedDateTime(Instant.ofEpochMilli(timestamp))
                 .setSessionId(sessionId)
                 .setActor(actor)
                 .setOperation(operation)

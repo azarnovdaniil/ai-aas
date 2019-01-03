@@ -6,11 +6,9 @@ import ru.daniilazarnov.common.model.data.Operation;
 
 public interface ParadigmService {
 
-    Event eventHandle(Event eventTO);
+    Event updateHandler(Event eventTO);
 
     Operation executeOperation();
-
-    String getUrl();
 
     void initSession(String sessionId);
 

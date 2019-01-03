@@ -7,6 +7,7 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
+import ru.daniilazarnov.bot.property.ParadigmProperties;
 import ru.daniilazarnov.common.model.data.Actor;
 import ru.daniilazarnov.common.model.data.Operation;
 
@@ -20,11 +21,13 @@ public class ParadigmClient {
     private static final Logger logger = LoggerFactory.getLogger(ParadigmClient.class);
 
     private final ParadigmService paradigmService;
+    private final ParadigmProperties paradigmProperties;
     private final RestTemplate restTemplate = new RestTemplate();
     private final Map<String, Map<Actor, TaskScheduler>> taskSchedulers = new HashMap<>();
 
-    public ParadigmClient(ParadigmService paradigmService) {
+    public ParadigmClient(ParadigmService paradigmService, ParadigmProperties paradigmProperties) {
         this.paradigmService = paradigmService;
+        this.paradigmProperties = paradigmProperties;
     }
 
     public void initBot(String sessionId, Actor actor) {
@@ -43,7 +46,7 @@ public class ParadigmClient {
             Operation operation = paradigmService.executeOperation();
 
             if (!operation.equals(Operation.none())) {
-                String url = paradigmService.getUrl() + "?sessionId=" + sessionId + "&botName=" + actor.getName();
+                String url = paradigmProperties.getUrl() + "?sessionId=" + sessionId + "&botName=" + actor.getName();
 
                 restTemplate.postForObject(url, operation, Operation.class);
             }

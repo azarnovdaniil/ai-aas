@@ -3,6 +3,9 @@ package ru.daniilazarnov.calc.storage.converter;
 import org.springframework.stereotype.Component;
 import ru.daniilazarnov.common.model.data.*;
 
+import java.time.Instant;
+import java.time.ZoneId;
+
 @Component
 public class UnityEventConverter implements EventConverter<UnityLogRow> {
 
@@ -23,8 +26,10 @@ public class UnityEventConverter implements EventConverter<UnityLogRow> {
 
         Operation operation = Operation.of(action, target);
 
+        Instant instant = timeConverter.stringToDate(logRow.getTimeStamp()).atZone(ZoneId.systemDefault()).toInstant();
+
         return Event.newBuilder()
-                .setLocalDateTime(timeConverter.stringToDate(logRow.getTimeStamp()))
+                .setZonedDateTime(instant)
                 .setSessionId(logRow.getSessionId())
                 .setActor(actorFactory.getActor(logRow.getSessionId(), logRow.getActor()))
                 .setOperation(operation)

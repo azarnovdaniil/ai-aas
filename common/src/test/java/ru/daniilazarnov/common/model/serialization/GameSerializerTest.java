@@ -7,6 +7,7 @@ import ru.daniilazarnov.common.model.data.*;
 import ru.daniilazarnov.common.model.serialization.json.serializers.*;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +30,7 @@ class GameSerializerTest {
 
         Event event1 = Event.newBuilder()
                 .setSessionId("123")
-                .setLocalDateTime(LocalDateTime.of(2000, 10, 10, 10, 10))
+                .setZonedDateTime(Instant.EPOCH)
                 .setActor(actor)
                 .setOperation(Operation.of(action, target))
                 .setMultiValues("X", 0.0)
@@ -37,7 +38,7 @@ class GameSerializerTest {
 
         Event event2 = Event.newBuilder()
                 .setSessionId("123")
-                .setLocalDateTime(LocalDateTime.of(2000, 10, 10, 10, 10))
+                .setZonedDateTime(Instant.EPOCH)
                 .setActor(actor)
                 .setOperation(Operation.of(action, target))
                 .setMultiValues("X", 0.0)

@@ -9,9 +9,12 @@ logging:
 server:
   port: 8082
 
-date-time-formatter: "M/dd/yyyy HH:mm:ss:[SSS][SS][S]"
-csv-delimiter: ","
+parser:
+  formatter: "M/dd/yyyy HH:mm:ss:[SSS][SS][S]"
+  delimiter: ","
+  config-location: "/Users/daniilazarnov/config/game_config.json"
+  bot-url: "http://localhost:8080/calculate"
 
-before-calc-location: "/Users/daniilazarnov/logs/before"
-after-calc-location: "/Users/daniilazarnov/logs/after"
-game-config-location: "/Users/daniilazarnov/config/game_config.json"
+storage:
+  before-location: "/Users/daniilazarnov/logs/before"
+  after-location: "/Users/daniilazarnov/logs/after"

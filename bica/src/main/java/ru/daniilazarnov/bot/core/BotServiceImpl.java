@@ -24,7 +24,7 @@ public class BotServiceImpl implements BotCore {
     }
 
     @Override
-    public Event actionHandle(Event event) {
+    public Event eventHandler(Event event) {
         return botService.updateMemory(event);
     }
 

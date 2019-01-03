@@ -3,7 +3,6 @@ package ru.daniilazarnov.bot.paradigm.teleport;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.BotCore;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
-import ru.daniilazarnov.bot.property.BotProperties;
 import ru.daniilazarnov.common.config.GameConfig;
 import ru.daniilazarnov.common.model.data.Actor;
 import ru.daniilazarnov.common.model.data.Event;
@@ -18,26 +17,24 @@ import java.util.Set;
 public class TeleportService implements ParadigmService {
 
     private final BotCore botCore;
-    private final BotProperties properties;
     private final GameConfig gameConfig;
     private final Map<String, Set<Actor>> sessions = new HashMap<>();
     private final Map<String, Set<Operation>> allOperations = new HashMap<>();
 
-    public TeleportService(BotCore botCore, BotProperties properties, GameConfig gameConfig) {
+    public TeleportService(BotCore botCore, GameConfig gameConfig) {
         this.botCore = botCore;
-        this.properties = properties;
         this.gameConfig = gameConfig;
     }
 
     @Override
-    public Event eventHandle(Event event) {
+    public Event updateHandler(Event event) {
         String sessionId = event.getSessionId();
 
         addOperations(sessionId, event.getActor());
         addOperations(sessionId, event.getOperation().getTarget());
         botCore.addOperations(sessionId, allOperations.get(sessionId));
 
-        return botCore.actionHandle(event);
+        return botCore.eventHandler(event);
     }
 
     private void addOperations(String sessionId, Actor actor) {
@@ -50,11 +47,6 @@ public class TeleportService implements ParadigmService {
     @Override
     public Operation executeOperation() {
         return botCore.executeOperation();
-    }
-
-    @Override
-    public String getUrl() {
-        return properties.getClientUrl();
     }
 
     @Override

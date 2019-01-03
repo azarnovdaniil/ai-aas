@@ -23,18 +23,31 @@ public class Controller {
         this.storageClient = storageClient;
     }
 
-    @PostMapping("/teleport")
-    public void teleportController(@RequestBody Event event) {
+    @PostMapping("/calculate")
+    public Event calculateHandler(@RequestBody Event event) {
         String sessionId = event.getSessionId();
         if (!paradigmService.isInitSession(sessionId)) {
             paradigmService.initSession(sessionId);
         }
 
-        storageClient.sendIntoStorage(paradigmService.eventHandle(event));
+        Event updatedEvent = paradigmService.updateHandler(event);
+        storageClient.sendIntoStorage(updatedEvent);
+
+        return updatedEvent;
     }
 
-    @PostMapping(value = "/teleport/init", params = {"sessionId", "botName"})
-    public void teleportInitController(@RequestParam("sessionId") String sessionId, @RequestParam("botName") String botName) {
+    @PostMapping("/update")
+    public void updateHandler(@RequestBody Event event) {
+        String sessionId = event.getSessionId();
+        if (!paradigmService.isInitSession(sessionId)) {
+            paradigmService.initSession(sessionId);
+        }
+
+        storageClient.sendIntoStorage(paradigmService.updateHandler(event));
+    }
+
+    @PostMapping(value = "/update/init", params = {"sessionId", "botName"})
+    public void initHandler(@RequestParam("sessionId") String sessionId, @RequestParam("botName") String botName) {
         if (!paradigmService.isInitSession(sessionId)) {
             paradigmService.initSession(sessionId);
             paradigmClient.initBot(sessionId, Actor.valueOf(botName));
