@@ -2,6 +2,7 @@ package ru.daniilazarnov.common.model.data;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.data.mongodb.core.mapping.Document;
 import ru.daniilazarnov.common.model.serialization.json.deserializers.EventDeserializer;
 import ru.daniilazarnov.common.model.serialization.json.serializers.EventSerializer;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @JsonSerialize(using = EventSerializer.class)
 @JsonDeserialize(using = EventDeserializer.class)
+@Document
 public class Event {
 
     private ZonedDateTime zonedDateTime;

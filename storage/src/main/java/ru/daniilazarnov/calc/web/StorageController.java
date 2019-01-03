@@ -1,4 +1,4 @@
-package ru.daniilazarnov.calc.controller;
+package ru.daniilazarnov.calc.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import ru.daniilazarnov.calc.data.EventRepository;
 import ru.daniilazarnov.calc.property.ParserProperties;
 import ru.daniilazarnov.calc.storage.LogDao;
 import ru.daniilazarnov.calc.storage.serialization.Serializer;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 public class StorageController {
 
+    private final EventRepository eventRepository;
     private final ParserProperties parserProperties;
     private final StorageService storageService;
     private final Serializer serializer;
@@ -29,8 +31,9 @@ public class StorageController {
 
     private static final Logger logger = LoggerFactory.getLogger(StorageController.class);
 
-    public StorageController(ParserProperties parserProperties, LogDao logDao,
+    public StorageController(EventRepository eventRepository, ParserProperties parserProperties, LogDao logDao,
                              StorageService storageService, Serializer serializer) {
+        this.eventRepository = eventRepository;
 
         this.parserProperties = parserProperties;
         this.storageService = storageService;
@@ -40,7 +43,12 @@ public class StorageController {
 
     @PostMapping("/storage")
     public void saveStorage(@RequestBody Event event) {
-        logger.info(serializer.toCSV(event));
+        eventRepository.save(event);
+    }
+
+    @RequestMapping("/print")
+    public void print() {
+        eventRepository.findAll().forEach(event -> logger.info(serializer.toCSV(event)));
     }
 
     @RequestMapping("/calculate")
