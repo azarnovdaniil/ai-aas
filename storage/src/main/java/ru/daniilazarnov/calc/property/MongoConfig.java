@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
-import ru.daniilazarnov.calc.data.converter.ZonedDateTimeReadConverter;
-import ru.daniilazarnov.calc.data.converter.ZonedDateTimeWriteConverter;
+import ru.daniilazarnov.common.model.converter.ZonedDateTimeReadConverter;
+import ru.daniilazarnov.common.model.converter.ZonedDateTimeWriteConverter;
 
 import java.util.ArrayList;
 import java.util.List;
