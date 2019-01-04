@@ -3,7 +3,7 @@ package ru.daniilazarnov.common.model.serialization.json.serializers;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import ru.daniilazarnov.common.model.data.Action;
+import ru.daniilazarnov.common.model.entity.Action;
 
 import java.io.IOException;
 

@@ -2,8 +2,8 @@ package ru.daniilazarnov.calc.storage.serialization.csv;
 
 import org.springframework.stereotype.Component;
 import ru.daniilazarnov.calc.property.ParserProperties;
-import ru.daniilazarnov.common.model.data.Event;
-import ru.daniilazarnov.common.model.data.State;
+import ru.daniilazarnov.common.model.entity.Event;
+import ru.daniilazarnov.common.model.entity.State;
 
 import java.util.StringJoiner;
 

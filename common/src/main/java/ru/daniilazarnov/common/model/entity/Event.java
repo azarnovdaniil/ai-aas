@@ -1,4 +1,4 @@
-package ru.daniilazarnov.common.model.data;
+package ru.daniilazarnov.common.model.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

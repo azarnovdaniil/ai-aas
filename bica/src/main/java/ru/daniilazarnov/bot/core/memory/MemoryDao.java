@@ -1,8 +1,8 @@
 package ru.daniilazarnov.bot.core.memory;
 
-import ru.daniilazarnov.common.model.data.Action;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.State;
+import ru.daniilazarnov.common.model.entity.Action;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.State;
 
 import java.util.Set;
 

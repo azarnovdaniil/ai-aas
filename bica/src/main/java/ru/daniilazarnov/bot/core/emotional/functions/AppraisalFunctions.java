@@ -1,7 +1,7 @@
 package ru.daniilazarnov.bot.core.emotional.functions;
 
 import org.apache.commons.math3.complex.Complex;
-import ru.daniilazarnov.common.model.data.Appraisal;
+import ru.daniilazarnov.common.model.entity.Appraisal;
 import ru.daniilazarnov.common.util.TriFunction;
 
 import java.util.function.BinaryOperator;

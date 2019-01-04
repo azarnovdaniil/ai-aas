@@ -3,10 +3,10 @@ package ru.daniilazarnov.bot.core.emotional;
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.memory.MemoryDao;
 import ru.daniilazarnov.bot.core.rational.RationalService;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Appraisal;
-import ru.daniilazarnov.common.model.data.Operation;
-import ru.daniilazarnov.common.model.data.State;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Appraisal;
+import ru.daniilazarnov.common.model.entity.Operation;
+import ru.daniilazarnov.common.model.entity.State;
 
 import java.util.*;
 

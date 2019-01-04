@@ -1,6 +1,6 @@
 package ru.daniilazarnov.bot.core.service;
 
-import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.entity.Event;
 
 public interface MemoryService {
 

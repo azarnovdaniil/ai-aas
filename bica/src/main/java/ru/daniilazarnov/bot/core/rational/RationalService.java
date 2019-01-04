@@ -1,7 +1,7 @@
 package ru.daniilazarnov.bot.core.rational;
 
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Operation;
 
 import java.util.Set;
 

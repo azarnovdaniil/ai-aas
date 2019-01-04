@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Appraisal;
-import ru.daniilazarnov.common.model.data.State;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Appraisal;
+import ru.daniilazarnov.common.model.entity.State;
 
 import java.io.IOException;
 

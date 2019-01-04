@@ -1,4 +1,4 @@
-package ru.daniilazarnov.common.model.data;
+package ru.daniilazarnov.common.model.entity;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ public abstract class GameObject {
     private final String name;
     private final String type;
 
-    GameObject(String name, String type) {
+    public GameObject(String name, String type) {
         this.name = name;
         this.type = type;
     }

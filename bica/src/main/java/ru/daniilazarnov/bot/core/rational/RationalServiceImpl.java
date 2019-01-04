@@ -1,8 +1,8 @@
 package ru.daniilazarnov.bot.core.rational;
 
 import org.springframework.stereotype.Service;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Operation;
 
 import java.util.HashMap;
 import java.util.Map;

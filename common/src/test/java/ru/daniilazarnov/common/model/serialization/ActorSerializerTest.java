@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.junit.jupiter.api.Test;
-import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.entity.Actor;
 import ru.daniilazarnov.common.model.serialization.json.serializers.ActorSerializer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

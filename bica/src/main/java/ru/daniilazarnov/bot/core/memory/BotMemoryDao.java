@@ -2,10 +2,10 @@ package ru.daniilazarnov.bot.core.memory;
 
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.common.config.GameConfig;
-import ru.daniilazarnov.common.model.data.Action;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Appraisal;
-import ru.daniilazarnov.common.model.data.State;
+import ru.daniilazarnov.common.model.entity.Action;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Appraisal;
+import ru.daniilazarnov.common.model.entity.State;
 
 import java.util.LinkedHashSet;
 import java.util.Map;

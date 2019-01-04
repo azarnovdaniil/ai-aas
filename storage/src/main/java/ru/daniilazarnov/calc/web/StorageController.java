@@ -12,7 +12,7 @@ import ru.daniilazarnov.calc.property.ParserProperties;
 import ru.daniilazarnov.calc.storage.LogDao;
 import ru.daniilazarnov.calc.storage.serialization.Serializer;
 import ru.daniilazarnov.calc.storage.system.StorageService;
-import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.entity.Event;
 
 import java.io.IOException;
 import java.util.Comparator;

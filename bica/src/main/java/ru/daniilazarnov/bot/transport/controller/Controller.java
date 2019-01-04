@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
 import ru.daniilazarnov.bot.transport.client.ParadigmClient;
 import ru.daniilazarnov.bot.transport.client.StorageClient;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Event;
 
 @RestController
 public class Controller {

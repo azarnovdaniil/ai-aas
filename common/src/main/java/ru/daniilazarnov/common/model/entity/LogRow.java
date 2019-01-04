@@ -1,4 +1,4 @@
-package ru.daniilazarnov.common.model.data;
+package ru.daniilazarnov.common.model.entity;
 
 public abstract class LogRow {
 

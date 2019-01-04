@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.storage.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.common.model.data.Actor;
+import ru.daniilazarnov.common.model.entity.Actor;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.daniilazarnov.calc.property.ParserProperties;
 import ru.daniilazarnov.calc.storage.converter.EventConverter;
-import ru.daniilazarnov.common.model.data.Event;
-import ru.daniilazarnov.common.model.data.UnityLogRow;
+import ru.daniilazarnov.common.model.entity.Event;
+import ru.daniilazarnov.common.model.entity.UnityLogRow;
 
 import java.io.IOException;
 import java.nio.file.Files;

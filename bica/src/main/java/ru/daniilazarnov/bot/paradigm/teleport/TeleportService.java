@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import ru.daniilazarnov.bot.core.BotCore;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
 import ru.daniilazarnov.common.config.GameConfig;
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Event;
-import ru.daniilazarnov.common.model.data.GameObject;
-import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Event;
+import ru.daniilazarnov.common.model.entity.GameObject;
+import ru.daniilazarnov.common.model.entity.Operation;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,7 +1,7 @@
 package ru.daniilazarnov.calc.storage.converter;
 
 import org.springframework.stereotype.Component;
-import ru.daniilazarnov.common.model.data.*;
+import ru.daniilazarnov.common.model.entity.*;
 
 import java.time.Instant;
 import java.time.ZoneId;

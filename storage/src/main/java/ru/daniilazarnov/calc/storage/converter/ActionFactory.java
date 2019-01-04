@@ -2,9 +2,9 @@ package ru.daniilazarnov.calc.storage.converter;
 
 import org.springframework.stereotype.Component;
 import ru.daniilazarnov.common.config.GameConfig;
-import ru.daniilazarnov.common.model.data.Action;
-import ru.daniilazarnov.common.model.data.ActionType;
-import ru.daniilazarnov.common.model.data.Appraisal;
+import ru.daniilazarnov.common.model.entity.Action;
+import ru.daniilazarnov.common.model.entity.ActionType;
+import ru.daniilazarnov.common.model.entity.Appraisal;
 
 import java.util.HashMap;
 import java.util.HashSet;

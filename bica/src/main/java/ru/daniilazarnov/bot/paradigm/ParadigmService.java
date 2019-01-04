@@ -1,8 +1,8 @@
 package ru.daniilazarnov.bot.paradigm;
 
-import ru.daniilazarnov.common.model.data.Actor;
-import ru.daniilazarnov.common.model.data.Event;
-import ru.daniilazarnov.common.model.data.Operation;
+import ru.daniilazarnov.common.model.entity.Actor;
+import ru.daniilazarnov.common.model.entity.Event;
+import ru.daniilazarnov.common.model.entity.Operation;
 
 public interface ParadigmService {
 

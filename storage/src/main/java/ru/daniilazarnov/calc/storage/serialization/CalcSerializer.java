@@ -2,7 +2,7 @@ package ru.daniilazarnov.calc.storage.serialization;
 
 import org.springframework.stereotype.Service;
 import ru.daniilazarnov.calc.storage.serialization.csv.CsvEventSerializer;
-import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.entity.Event;
 
 @Service
 public class CalcSerializer implements Serializer {

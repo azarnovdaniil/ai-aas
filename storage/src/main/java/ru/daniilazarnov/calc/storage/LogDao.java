@@ -1,6 +1,6 @@
 package ru.daniilazarnov.calc.storage;
 
-import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.entity.Event;
 
 import java.nio.file.Path;
 import java.util.List;
