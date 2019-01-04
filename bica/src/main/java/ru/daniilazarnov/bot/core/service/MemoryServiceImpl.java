@@ -25,18 +25,18 @@ public class MemoryServiceImpl implements MemoryService {
 
         if (!memoryDao.isInitSession(sessionId)) {
             memoryDao.initSession(sessionId);
-            if (!actor.getName().isEmpty()) {
+            if (actor.isNotNone()) {
                 memoryDao.initMemoryForActorInSession(sessionId, actor);
             }
-            if (!target.getName().isEmpty()) {
+            if (target.isNotNone()) {
                 memoryDao.initMemoryForActorInSession(sessionId, target);
             }
         }
 
-        if (!actor.getName().isEmpty() && memoryDao.isNotDetermined(sessionId, actor)) {
+        if (actor.isNotNone() && memoryDao.isNotDetermined(sessionId, actor)) {
             memoryDao.initMemoryForActorInSession(sessionId, actor);
         }
-        if (!target.getName().isEmpty() && memoryDao.isNotDetermined(sessionId, target)) {
+        if (target.isNotNone() && memoryDao.isNotDetermined(sessionId, target)) {
             memoryDao.initMemoryForActorInSession(sessionId, target);
         }
 

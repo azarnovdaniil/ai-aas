@@ -26,4 +26,8 @@ public class Actor extends GameObject {
         return NONE;
     }
 
+    public boolean isNotNone() {
+        return !this.equals(NONE);
+    }
+
 }
