@@ -14,6 +14,7 @@ public class ActorSerializer extends JsonSerializer<Actor> {
         jGen.writeStartObject();
 
         jGen.writeStringField("name", actor.getName());
+        jGen.writeStringField("type", actor.getType());
 
         jGen.writeEndObject();
     }

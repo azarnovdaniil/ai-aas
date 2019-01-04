@@ -5,6 +5,7 @@ import ru.daniilazarnov.common.model.data.*;
 
 import java.time.Instant;
 import java.time.ZoneId;
+import java.util.LinkedHashMap;
 
 @Component
 public class UnityEventConverter implements EventConverter<UnityLogRow> {
@@ -24,7 +25,12 @@ public class UnityEventConverter implements EventConverter<UnityLogRow> {
         Action action = actionFactory.getAction(logRow.getAction());
         Actor target = actorFactory.getActor(logRow.getSessionId(), logRow.getTarget());
 
-        Operation operation = Operation.of(action, target);
+        LinkedHashMap<String, Number> map = new LinkedHashMap<>();
+        map.put("X", logRow.getX());
+        map.put("Y", logRow.getY());
+        map.put("Z", logRow.getZ());
+
+        Operation operation = Operation.of(action, target, map);
 
         Instant instant = timeConverter.stringToDate(logRow.getTimeStamp()).atZone(ZoneId.systemDefault()).toInstant();
 
@@ -33,9 +39,6 @@ public class UnityEventConverter implements EventConverter<UnityLogRow> {
                 .setSessionId(logRow.getSessionId())
                 .setActor(actorFactory.getActor(logRow.getSessionId(), logRow.getActor()))
                 .setOperation(operation)
-                .setMultiValues("X", logRow.getX())
-                .setMultiValues("Y", logRow.getY())
-                .setMultiValues("Z", logRow.getZ())
                 .build();
     }
 

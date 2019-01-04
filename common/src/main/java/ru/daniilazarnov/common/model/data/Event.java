@@ -9,9 +9,7 @@ import ru.daniilazarnov.common.model.serialization.json.serializers.EventSeriali
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import java.util.Set;
 
 @JsonSerialize(using = EventSerializer.class)
@@ -23,7 +21,6 @@ public class Event {
     private String sessionId;
     private Actor actor;
     private Operation operation;
-    private Map<String, Number> multiValues = new LinkedHashMap<>();
     private Set<State> appraisalStateSet = new LinkedHashSet<>();
 
     public ZonedDateTime getZonedDateTime() {
@@ -43,10 +40,6 @@ public class Event {
 
     public Actor getActor() {
         return actor;
-    }
-
-    public Map<String, Number> getMultiValues() {
-        return multiValues;
     }
 
     public static Builder newBuilder() {
@@ -80,16 +73,6 @@ public class Event {
 
         public Builder setActor(Actor actor) {
             Event.this.actor = actor;
-            return this;
-        }
-
-        public Builder setMultiValues(String key, Number value) {
-            Event.this.multiValues.put(key, value);
-            return this;
-        }
-
-        public Builder setMultiValues(Map<String, Number> multiValues) {
-            Event.this.multiValues.putAll(multiValues);
             return this;
         }
 

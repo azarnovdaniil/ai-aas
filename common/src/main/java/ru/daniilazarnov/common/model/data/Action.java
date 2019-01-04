@@ -11,26 +11,26 @@ public class Action {
 
     private static final Action NONE = new Action("none", Appraisal.zero(), ActionType.NONE);
 
-    private final String actionName;
+    private final String name;
     private final Appraisal appraisal;
-    private final ActionType actionType;
+    private final ActionType type;
 
-    private Action(String actionName, Appraisal appraisal, ActionType actionType) {
-        this.actionName = actionName;
+    private Action(String name, Appraisal appraisal, ActionType type) {
+        this.name = name;
         this.appraisal = appraisal;
-        this.actionType = actionType;
+        this.type = type;
     }
 
-    public String getActionName() {
-        return actionName;
+    public String getName() {
+        return name;
     }
 
     public Appraisal getAppraisal() {
         return appraisal;
     }
 
-    public ActionType getActionType() {
-        return actionType;
+    public ActionType getType() {
+        return type;
     }
 
     public static Action none() {
@@ -75,9 +75,9 @@ public class Action {
     @Override
     public String toString() {
         return "Action{" +
-                "actionName='" + actionName + '\'' +
+                "name='" + name + '\'' +
                 ", appraisal=" + appraisal +
-                ", actionType=" + actionType +
+                ", type=" + type +
                 '}';
     }
 }

@@ -6,6 +6,7 @@ import ru.daniilazarnov.bot.paradigm.ParadigmService;
 import ru.daniilazarnov.common.config.GameConfig;
 import ru.daniilazarnov.common.model.data.Actor;
 import ru.daniilazarnov.common.model.data.Event;
+import ru.daniilazarnov.common.model.data.GameObject;
 import ru.daniilazarnov.common.model.data.Operation;
 
 import java.util.HashMap;
@@ -37,10 +38,14 @@ public class TeleportService implements ParadigmService {
         return botCore.eventHandler(event);
     }
 
-    private void addOperations(String sessionId, Actor actor) {
-        if (!sessions.get(sessionId).contains(actor)) {
-            sessions.get(sessionId).add(actor);
-            gameConfig.getActions().forEach(action -> allOperations.get(sessionId).add(Operation.of(action, actor)));
+    //TODO: need changed rules of add operations, need add operations with target which is not actor
+    private void addOperations(String sessionId, GameObject gameObject) {
+        if(!(gameObject instanceof Actor)) {
+            return;
+        }
+        if (!sessions.get(sessionId).contains(gameObject)) {
+            sessions.get(sessionId).add((Actor) gameObject);
+            gameConfig.getActions().forEach(action -> allOperations.get(sessionId).add(Operation.of(action, gameObject)));
         }
     }
 

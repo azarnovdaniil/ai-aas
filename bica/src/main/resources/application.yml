@@ -8,7 +8,7 @@ logging:
 
 paradigm:
   config-location: "/Users/daniilazarnov/config/game_config.json"
-  url: "http://localhost:8081/teleport/"
+  url: "http://127.0.0.1:8088/teleport/"
 
 storage:
   url: "http://localhost:8082/storage"

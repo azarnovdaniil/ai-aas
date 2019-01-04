@@ -17,13 +17,17 @@ public class ActionDeserializer extends JsonDeserializer<Action> {
         JsonNode node = jp.getCodec().readTree(jp);
 
         String name = node.get("name").asText();
-        String type = node.get("type").asText();
-        Appraisal appraisal = node.get("appraisal").traverse(jp.getCodec()).readValueAs(Appraisal.class);
+
+        JsonNode typeNode = node.get("type");
+        ActionType type = typeNode != null ? ActionType.valueOf(typeNode.asText()) : ActionType.NORMAL;
+
+        JsonNode appraisalNode = node.get("appraisal");
+        Appraisal appraisal = appraisalNode != null ? appraisalNode.traverse(jp.getCodec()).readValueAs(Appraisal.class) : Appraisal.zero();
 
         return Action.builder()
                 .setAppraisal(appraisal)
                 .setActionName(name)
-                .setActionType(ActionType.valueOf(type))
+                .setActionType(type)
                 .build();
     }
 }

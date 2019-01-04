@@ -43,6 +43,7 @@ public class Controller {
             paradigmService.initSession(sessionId);
         }
 
+        //TODO: need converter
         storageClient.sendIntoStorage(paradigmService.updateHandler(event));
     }
 

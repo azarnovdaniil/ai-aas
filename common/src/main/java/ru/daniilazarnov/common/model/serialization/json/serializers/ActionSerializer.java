@@ -13,8 +13,8 @@ public class ActionSerializer extends JsonSerializer<Action> {
     public void serialize(Action action, JsonGenerator jGen, SerializerProvider sPr) throws IOException {
         jGen.writeStartObject();
 
-        jGen.writeStringField("name", action.getActionName());
-        jGen.writeStringField("type", action.getActionType().name());
+        jGen.writeStringField("name", action.getName());
+        jGen.writeStringField("type", action.getType().name());
         jGen.writeObjectField("appraisal", action.getAppraisal());
 
         jGen.writeEndObject();

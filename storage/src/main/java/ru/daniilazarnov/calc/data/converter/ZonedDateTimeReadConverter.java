@@ -1,4 +1,4 @@
-package ru.daniilazarnov.common.model.converter;
+package ru.daniilazarnov.calc.data.converter;
 
 import org.springframework.core.convert.converter.Converter;
 

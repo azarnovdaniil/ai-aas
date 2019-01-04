@@ -18,7 +18,7 @@ public class ActionFactory {
     private final Set<String> systemActions = new HashSet<>();
 
     public ActionFactory(GameConfig gameConfig) {
-        gameConfig.getActions().forEach(action -> actions.put(action.getActionName().trim().toUpperCase(), action));
+        gameConfig.getActions().forEach(action -> actions.put(action.getName().trim().toUpperCase(), action));
         gameConfig.getSystemActions().forEach(s -> systemActions.add(s.trim().toUpperCase()));
     }
 

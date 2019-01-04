@@ -15,6 +15,7 @@ public class OperationSerializer extends JsonSerializer<Operation> {
 
         jGen.writeObjectField("action", event.getAction());
         jGen.writeObjectField("target", event.getTarget());
+        jGen.writeObjectField("multiValues", event.getMultiValues());
 
         jGen.writeEndObject();
     }
