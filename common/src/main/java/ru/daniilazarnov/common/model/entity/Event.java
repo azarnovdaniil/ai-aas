@@ -17,14 +17,14 @@ import java.util.Set;
 @Document
 public class Event {
 
-    private ZonedDateTime zonedDateTime;
+    private ZonedDateTime timestamp;
     private String sessionId;
     private Actor actor;
     private Operation operation;
     private Set<State> appraisalStateSet = new LinkedHashSet<>();
 
-    public ZonedDateTime getZonedDateTime() {
-        return zonedDateTime;
+    public ZonedDateTime getTimestamp() {
+        return timestamp;
     }
 
     private Event() {
@@ -57,7 +57,7 @@ public class Event {
         }
 
         public Builder setZonedDateTime(Instant instant) {
-            Event.this.zonedDateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
+            Event.this.timestamp = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
             return this;
         }
 

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.daniilazarnov.bot.paradigm.ParadigmService;
 import ru.daniilazarnov.bot.transport.client.ParadigmClient;
 import ru.daniilazarnov.bot.transport.client.StorageClient;
+import ru.daniilazarnov.bot.transport.converter.EventConverter;
+import ru.daniilazarnov.common.model.dto.EventTO;
 import ru.daniilazarnov.common.model.entity.Actor;
 import ru.daniilazarnov.common.model.entity.Event;
 
@@ -16,11 +18,13 @@ public class Controller {
     private final ParadigmService paradigmService;
     private final ParadigmClient paradigmClient;
     private final StorageClient storageClient;
+    private final EventConverter eventConverter;
 
-    public Controller(ParadigmService paradigmService, ParadigmClient paradigmClient, StorageClient storageClient) {
+    public Controller(ParadigmService paradigmService, ParadigmClient paradigmClient, StorageClient storageClient, EventConverter eventConverter) {
         this.paradigmService = paradigmService;
         this.paradigmClient = paradigmClient;
         this.storageClient = storageClient;
+        this.eventConverter = eventConverter;
     }
 
     @PostMapping("/calculate")
@@ -37,13 +41,13 @@ public class Controller {
     }
 
     @PostMapping("/update")
-    public void updateHandler(@RequestBody Event event) {
-        String sessionId = event.getSessionId();
+    public void updateHandler(@RequestBody EventTO eventTO) {
+        String sessionId = eventTO.getSessionId();
         if (!paradigmService.isInitSession(sessionId)) {
             paradigmService.initSession(sessionId);
         }
+        Event event = eventConverter.convert(eventTO);
 
-        //TODO: need converter
         storageClient.sendIntoStorage(paradigmService.updateHandler(event));
     }
 

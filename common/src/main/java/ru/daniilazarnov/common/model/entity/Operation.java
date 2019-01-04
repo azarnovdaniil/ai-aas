@@ -13,15 +13,17 @@ import java.util.Objects;
 @JsonDeserialize(using = OperationDeserializer.class)
 public class Operation {
 
-    private static final Operation NONE = new Operation(Action.none(), Actor.none(), new HashMap<>());
+    private static final Operation NONE = new Operation(Action.none(), Actor.none(), Actor.none(), new HashMap<>());
 
     private final Action action;
-    private final GameObject target;
+    private final Actor target;
+    private final GameObject gameObject;
     private final Map<String, Number> multiValues;
 
-    private Operation(Action action, GameObject target, Map<String, Number> multiValues) {
+    private Operation(Action action, Actor target, GameObject gameObject, Map<String, Number> multiValues) {
         this.action = action;
         this.target = target;
+        this.gameObject = gameObject;
         this.multiValues = multiValues;
     }
 
@@ -29,20 +31,24 @@ public class Operation {
         return action;
     }
 
-    public GameObject getTarget() {
+    public Actor getTarget() {
         return target;
+    }
+
+    public GameObject getGameObject() {
+        return gameObject;
     }
 
     public Map<String, Number> getMultiValues() {
         return multiValues;
     }
 
-    public static Operation of(Action action, GameObject target) {
-        return of(action, target, new HashMap<>());
+    public static Operation of(Action action, Actor target) {
+        return of(action, target, Actor.none(), new HashMap<>());
     }
 
-    public static Operation of(Action action, GameObject target, Map<String, Number> multiValues) {
-        return new Operation(action, target, multiValues);
+    public static Operation of(Action action, Actor target, GameObject gameObject, Map<String, Number> multiValues) {
+        return new Operation(action, target, gameObject, multiValues);
     }
 
     public static Operation none() {
@@ -70,4 +76,5 @@ public class Operation {
                 ", target=" + target +
                 '}';
     }
+
 }

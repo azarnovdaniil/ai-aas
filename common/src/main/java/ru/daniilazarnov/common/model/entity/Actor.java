@@ -16,6 +16,9 @@ public class Actor extends GameObject {
     }
 
     public static Actor valueOf(String name) {
+        if (name == null) {
+            return NONE;
+        }
         return new Actor(name);
     }
 

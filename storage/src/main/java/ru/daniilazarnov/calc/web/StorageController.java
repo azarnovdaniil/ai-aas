@@ -58,7 +58,7 @@ public class StorageController {
         storageService.loadAll().forEach(path -> {
             List<String> collect = logDao.getListEvent(path)
                     .stream()
-                    .sorted(Comparator.comparing(Event::getZonedDateTime))
+                    .sorted(Comparator.comparing(Event::getTimestamp))
                     .peek(this::client)
                     .map(serializer::toCSV)
                     .collect(Collectors.toList());

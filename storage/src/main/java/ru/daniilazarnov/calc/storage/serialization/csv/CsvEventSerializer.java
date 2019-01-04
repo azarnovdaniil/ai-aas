@@ -18,7 +18,7 @@ public class CsvEventSerializer {
 
     public String serialize(Event event) {
         StringJoiner joiner = new StringJoiner(delimiter);
-        joiner.add(String.valueOf(event.getZonedDateTime().toInstant().toEpochMilli()))
+        joiner.add(String.valueOf(event.getTimestamp().toInstant().toEpochMilli()))
                 .add(event.getSessionId())
                 .add(event.getActor().getName())
                 .add(event.getOperation().getAction().getName())

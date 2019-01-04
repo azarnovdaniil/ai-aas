@@ -13,7 +13,7 @@ public class EventSerializer extends JsonSerializer<Event> {
     public void serialize(Event event, JsonGenerator jGen, SerializerProvider sPr) throws IOException {
         jGen.writeStartObject();
 
-        jGen.writeNumberField("timestamp", event.getZonedDateTime().toInstant().toEpochMilli());
+        jGen.writeNumberField("timestamp", event.getTimestamp().toInstant().toEpochMilli());
         jGen.writeStringField("sessionId", event.getSessionId());
         jGen.writeObjectField("actor", event.getActor());
         jGen.writeObjectField("operation", event.getOperation());

@@ -21,12 +21,7 @@ public class MemoryServiceImpl implements MemoryService {
         String sessionId = event.getSessionId();
         Actor actor = event.getActor();
         Action action = event.getOperation().getAction();
-
-        //TODO: need changed rules of update memory for targets which is not actors
-        if (!(event.getOperation().getTarget() instanceof Actor)) {
-            return event;
-        }
-        Actor target = (Actor) event.getOperation().getTarget();
+        Actor target = event.getOperation().getTarget();
 
         if (!memoryDao.isInitSession(sessionId)) {
             memoryDao.initSession(sessionId);

@@ -30,7 +30,7 @@ public class UnityEventConverter implements EventConverter<UnityLogRow> {
         map.put("Y", logRow.getY());
         map.put("Z", logRow.getZ());
 
-        Operation operation = Operation.of(action, target, map);
+        Operation operation = Operation.of(action, target, target, map);
 
         Instant instant = timeConverter.stringToDate(logRow.getTimeStamp()).atZone(ZoneId.systemDefault()).toInstant();
 
